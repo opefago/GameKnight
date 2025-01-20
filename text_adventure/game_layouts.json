@@ -1,0 +1,125 @@
+{
+  "layouts": [
+    {
+      "name": "Haunted Mansion",
+      "objective": "Find the golden key and escape through the main gate",
+      "win_condition": {
+        "room": "Overgrown Garden",
+        "required_items": ["golden key"],
+        "completion_message": "With the golden key in hand, you unlock the main gate and escape the haunted mansion. The morning sun breaks through the clouds as you step into freedom. Congratulations on your escape!"
+      },
+      "startRoom": "hall",
+      "items": {
+        "torch": {
+          "description": "A sturdy brass torch with unusual markings.",
+          "readable": false
+        },
+        "silver key": {
+          "description": "A tarnished silver key with ornate patterns.",
+          "readable": false
+        },
+        "cookbook": {
+          "description": "An ancient cookbook, its pages yellowed with age.",
+          "readable": true,
+          "content": "Most pages are filled with recipes, but there's a curious note scribbled in the margin: 'The combination to the safe is the year this mansion was built: 1842'",
+          "revealed_clue": "Look for a safe in the cellar..."
+        },
+        "rusty key": {
+          "description": "A heavily rusted key that might break if used.",
+          "readable": false
+        },
+        "old coin": {
+          "description": "A weathered coin with strange symbols.",
+          "readable": true,
+          "content": "The coin has strange markings that match those on the torch."
+        },
+        "wine bottle": {
+          "description": "A dusty wine bottle with a faded label.",
+          "readable": true,
+          "content": "The label reads: 'Golden Estate Wine, 1842' - There's a small note attached: 'The key to the chest is hidden in plain sight.'"
+        },
+        "golden key": {
+          "description": "A brilliantly polished golden key.",
+          "readable": false
+        },
+        "chest key": {
+          "description": "An ornate key with a chest symbol.",
+          "readable": false
+        },
+        "torn page": {
+          "description": "A page torn from an old diary.",
+          "readable": true,
+          "content": "Day 157: The master keeps his treasures locked away. The chest key is hidden behind the loose brick in the kitchen."
+        }
+      },
+      "rooms": {
+        "hall": {
+          "name": "Great Hall",
+          "description": "You are in a grand hall with marble pillars. Dusty tapestries hang on the walls.",
+          "exits": {
+            "north": "kitchen",
+            "down": "cellar",
+            "east": "garden"
+          },
+          "items": ["torch", "silver key", "torn page"],
+          "containers": {
+            "old chest": {
+              "description": "A heavy wooden chest with ornate carvings.",
+              "locked": true,
+              "key_item": "chest key",
+              "items": ["golden key"]
+            }
+          }
+        },
+        "kitchen": {
+          "name": "Kitchen",
+          "description": "An old kitchen with a rusty stove. The air smells of ancient spices.",
+          "exits": {
+            "south": "hall"
+          },
+          "items": ["cookbook"],
+          "containers": {
+            "loose brick": {
+              "description": "A brick that seems slightly out of place.",
+              "locked": false,
+              "items": ["chest key"]
+            },
+            "cupboard": {
+              "description": "An old wooden cupboard with a creaky door.",
+              "locked": false,
+              "items": ["rusty key"]
+            }
+          }
+        },
+        "cellar": {
+          "name": "Cellar",
+          "description": "A dark cellar with cobwebs in every corner. Something scurries in the darkness.",
+          "exits": {
+            "up": "hall"
+          },
+          "items": ["old coin", "wine bottle"],
+          "containers": {
+            "wall safe": {
+              "description": "A sturdy iron safe built into the wall.",
+              "locked": true,
+              "combination": "1842",
+              "items": ["golden key"]
+            }
+          }
+        },
+        "garden": {
+          "name": "Overgrown Garden",
+          "description": "A wild garden with a rusty gate. Vines cover everything.",
+          "exits": {
+            "west": "hall"
+          },
+          "items": [],
+          "requires": {
+            "item": "golden key",
+            "message": "The main gate is locked. You need to find the right key."
+          }
+        }
+      }
+    }
+  ]
+}

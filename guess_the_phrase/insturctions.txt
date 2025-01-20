@@ -1,0 +1,49 @@
+Let me create clear instructions for hosting "Guess The Phrase" on WhatsApp:
+
+🎮 **GUESS THE PHRASE GAME - HOW TO PLAY** 🎮
+
+**GAME OVERVIEW:**  
+A fun word guessing game where you try to reveal a hidden phrase by guessing letters or solving the entire phrase at once!
+
+**GAME RULES:**
+1. You start with ₦1,000 prize money 
+2. Each player gets 3 attempts to solve the puzzle
+3. I'll share a phrase with some letters hidden by ⬜ symbols
+
+**COSTS:**
+- Guessing a vowel (a,e,i,o,u) costs ₦50
+- Each wrong guess costs ₦150
+- If your prize money reaches ₦0, you're out!
+
+**HOW TO PLAY:**
+1. I'll share a category and a partially hidden phrase
+2. You can either:
+   - Guess one letter at a time
+   - Try to solve the entire phrase
+
+GAMEPLAY EXAMPLE:
+📚 Category: Common Phrases 🎯 Phrase: ⬜ ⬜ I ⬜ ⬜ ⬜ ⬜ ⬜ ⬜ ⬜ K ⬜ 💰 Cash Prize: ₦1,000
+Let's solve: "A PIECE OF CAKE"
+Step 1: Player: "E"
+* Costs ₦50 (vowel)
+* ✅ Correct! 🎯 Phrase: ⬜ ⬜ I E ⬜ E ⬜ ⬜ ⬜ ⬜ K E 💰 Cash Prize: ₦950
+Step 2: Player: "C"
+* ✅ Correct! 🎯 Phrase: ⬜ ⬜ I E C E ⬜ ⬜ C ⬜ K E 💰 Cash Prize: ₦950
+Step 3: Player: "P"
+* ✅ Correct! 🎯 Phrase: ⬜ P I E C E ⬜ ⬜ C ⬜ K E 💰 Cash Prize: ₦950
+Step 4: Player: "A"
+* Costs ₦50 (vowel)
+* ✅ Correct! 🎯 Phrase: A P I E C E ⬜ ⬜ C A K E 💰 Cash Prize: ₦900
+Step 5: Player: "A PIECE OF CAKE"
+* ✅ Correct! Full phrase solved! 🎯 Phrase: A PIECE OF CAKE 💰 Final Prize: ₦900 🎉 WINNER!
+KEY TAKEAWAYS:
+* Vowels (a,e,i,o,u) cost ₦50 each time
+* Wrong guesses cost ₦150 and use up one attempt
+* You can guess the full phrase at any time
+* Each player gets 3 attempts maximum
+* Your prize money decreases with each paid guess
+* You can keep playing as long as you have money and attempts left
+
+**WINNING:**
+- Reveal all letters in the phrase OR
+- Correctly guess the complete phrase
