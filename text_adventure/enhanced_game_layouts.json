@@ -197,6 +197,99 @@
           }
         }
       }
+    },
+    {
+      "name": "Pirate's Cove",
+      "objective": "Retrieve the lost treasure and escape on the ship",
+      "win_condition": {
+        "room": "Hidden Cove",
+        "required_items": ["gold doubloon"],
+        "completion_message": "You place the gold doubloon in the ancient statue's hand, revealing a hidden passage to the ship. You sail away, victorious!"
+      },
+      "startRoom": "beach",
+      "items": {
+        "map": {
+          "description": "A tattered map showing the cove's layout",
+          "readable": true,
+          "content": "X marks the spot near the old palm tree",
+          "position": {
+            "preposition": "under",
+            "reference": "stone"
+          }
+        },
+        "sword": {
+          "description": "A rusty pirate sword",
+          "readable": false,
+          "position": {
+            "preposition": "leaning against",
+            "reference": "tree"
+          }
+        },
+        "gold doubloon": {
+          "description": "A shiny gold coin with a skull engraving",
+          "readable": false,
+          "position": {
+            "preposition": "in",
+            "reference": "chest"
+          }
+        }
+      },
+      "rooms": {
+        "beach": {
+          "name": "Sandy Beach",
+          "description": "A sunlit beach with waves gently lapping the shore. Palm trees sway in the breeze.",
+          "furniture": {
+            "stone": {
+              "description": "A large flat stone half-buried in the sand.",
+              "liftable": true,
+              "hidden_items": ["map"]
+            },
+            "tree": {
+              "description": "A tall palm tree with coconuts dangling from its branches.",
+              "liftable": false
+            }
+          },
+          "exits": {
+            "north": "jungle",
+            "west": "cave"
+          },
+          "items": ["sword", "map"]
+        },
+        "jungle": {
+          "name": "Dense Jungle",
+          "description": "A thick jungle with towering trees and the sound of exotic birds.",
+          "furniture": {
+            "vines": {
+              "description": "Thick vines hang from the trees, almost forming a curtain.",
+              "liftable": true,
+              "hidden_items": ["gold doubloon"]
+            }
+          },
+          "exits": {
+            "south": "beach",
+            "east": "cove"
+          },
+          "items": ["gold doubloon"]
+        },
+        "cove": {
+          "name": "Hidden Cove",
+          "description": "A secluded cove with clear blue water and a hidden dock.",
+          "furniture": {
+            "dock": {
+              "description": "An old wooden dock, creaking under the weight of time.",
+              "liftable": false
+            }
+          },
+          "exits": {
+            "west": "jungle"
+          },
+          "items": [],
+          "requires": {
+            "item": "gold doubloon",
+            "message": "You need the gold doubloon to unlock the secret of the cove."
+          }
+        }
+      }
     }
   ]
 }
