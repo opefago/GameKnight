@@ -1,0 +1,202 @@
+{
+  "layouts": [
+    {
+      "name": "Haunted Mansion",
+      "objective": "Find the golden key and escape through the main gate",
+      "win_condition": {
+        "room": "Overgrown Garden",
+        "required_items": ["golden key"],
+        "completion_message": "With the golden key in hand, you unlock the main gate and escape the haunted mansion. The morning sun breaks through the clouds as you step into freedom. Congratulations on your escape!"
+      },
+      "startRoom": "hall",
+      "items": {
+        "torch": {
+          "description": "an ornate brass torch casting flickering shadows",
+          "readable": false,
+          "position": {
+            "preposition": "hanging on",
+            "reference": "wall"
+          }
+        },
+        "silver key": {
+          "description": "a tarnished silver key catching dim light",
+          "readable": false,
+          "position": {
+            "preposition": "on",
+            "reference": "table"
+          }
+        },
+        "torn page": {
+          "description": "a page torn from an old diary.",
+          "readable": true,
+          "content": "Day 157: The master keeps his treasures locked away. The chest key is hidden behind the loose brick in the kitchen.",
+          "position": {
+            "preposition": "on",
+            "reference": "table"
+          }
+        },
+        "cookbook": {
+          "description": "a weathered leather-bound cookbook with gilt edges",
+          "readable": true,
+          "content": "Most pages are filled with recipes, but there's a curious note scribbled in the margin: 'The combination to the safe is the year this mansion was built'",
+          "revealed_clue": "Look for a safe in the cellar...",
+          "position": {
+            "preposition": "on",
+            "reference": "table"
+          }
+        },
+        "rusty key": {
+          "description": "a heavily rusted key that might crumble if handled roughly",
+          "readable": false,
+          "position": {
+            "preposition": "under",
+            "reference": "carpet"
+          }
+        },
+        "old coin": {
+          "description": "an ancient coin with mysterious engravings",
+          "readable": true,
+          "content": "The coin has strange markings that match those on the torch",
+          "position": {
+            "preposition": "beside",
+            "reference": "wine rack"
+          }
+        },
+        "wine bottle": {
+          "description": "a dusty wine bottle with a faded label",
+          "readable": true,
+          "content": "The label reads: 'Golden Estate Wine, 1842' - There's a small note attached: 'The key to the chest is hidden in plain sight.'",
+          "position": {
+            "preposition": "on",
+            "reference": "rack"
+          }
+        },
+        "golden key": {
+          "description": "a brilliantly polished golden key glinting in the dim light",
+          "readable": false,
+          "position": {
+            "preposition": "in",
+            "reference": "safe"
+          }
+        },
+        "chest key": {
+          "description": "an ornate key with a chest symbol",
+          "readable": false,
+          "position": {
+            "preposition": "behind",
+            "reference": "brick"
+          }
+        }
+      },
+      "rooms": {
+        "hall": {
+          "name": "Great Hall",
+          "description": "You stand in a grand hall with soaring marble pillars. Dusty tapestries depicting ancient scenes hang on the walls, their colors faded by time.",
+          "furniture": {
+            "carpet": {
+              "description": "A once-magnificent Persian carpet covers the center of the floor.",
+              "liftable": true,
+              "hidden_items": ["rusty key"]
+            },
+            "table": {
+              "description": "An antique mahogany table stands against the far wall, its surface covered in a fine layer of dust.",
+              "liftable": false
+            },
+            "wall": {
+              "description": "The stone walls are lined with elaborate brass sconces.",
+              "liftable": false
+            }
+          },
+          "exits": {
+            "north": "kitchen",
+            "down": "cellar",
+            "east": "garden"
+          },
+          "items": ["torch", "silver key", "rusty key", "torn page"],
+          "containers": {
+            "old chest": {
+              "description": "A heavy wooden old chest with intricate carvings stands in a shadowy corner.",
+              "locked": true,
+              "key_item": "chest key",
+              "items": ["golden key"]
+            }
+          }
+        },
+        "kitchen": {
+          "name": "Kitchen",
+          "description": "You enter a spacious kitchen with a large hearth and a long wooden table. The air is thick with the scent of old spices and wood smoke.",
+          "furniture": {
+            "table": {
+              "description": "A long wooden table dominates the center of the room, its surface scarred and stained from years of use.",
+              "liftable": false
+            },
+            "hearth": {
+              "description": "A stone hearth dominates one wall, its fire long extinguished.",
+              "liftable": false
+            }
+          },
+          "exits": {
+            "south": "hall"
+          },
+          "items": ["old coin", "cookbook"],
+          "containers": {
+            "cupboard": {
+              "description": "A tall wooden cupboard looms in the corner, its doors slightly ajar.",
+              "locked": false,
+              "items": ["chest key", "rusty key"]
+            },
+            "loose brick": {
+              "description": "A single brick in the wall seems slightly out of place, as if it has been disturbed recently.",
+              "locked": false,
+              "items": ["chest key"]
+            }
+          }
+        },
+        "cellar": {
+          "name": "Cellar",
+          "description": "You descend into a dimly lit cellar with stone walls and a low ceiling. The air is cool and musty, and the sound of dripping water echoes through the chamber.",
+          "furniture": {
+            "rack": {
+              "description": "A wooden wine rack lines one wall, its shelves filled with dusty bottles.",
+              "liftable": false
+            }
+          },
+          "exits": {
+            "up": "hall"
+          },
+          "items": ["old coin", "wine bottle"],
+          "containers": {
+            "wall safe": {
+              "description": "A sturdy iron safe built into the wall, its door secured with a rusted padlock.",
+              "locked": true,
+              "combination": "1842",
+              "items": ["golden key"]
+            }
+          }
+        },
+        "garden": {
+          "name": "Overgrown Garden",
+          "description": "You step out into a wild garden choked with weeds and overgrown vines. A rusty iron gate stands at the far end, its hinges creaking in the wind.",
+          "furniture": {
+            "gate": {
+              "description": "A rusty iron gate blocks the path to freedom.",
+              "liftable": false
+            },
+            "vines": {
+              "description": "Thick vines cover the walls and twist around the gate, their leaves rustling in the breeze.",
+              "liftable": false
+            }
+          },
+          "exits": {
+            "west": "hall"
+          },
+          "items": [],
+          "requires": {
+            "item": "golden key",
+            "message": "The main gate is locked. You need to find the right key."
+          }
+        }
+      }
+    }
+  ]
+}
