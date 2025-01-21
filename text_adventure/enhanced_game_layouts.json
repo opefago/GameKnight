@@ -26,6 +26,14 @@
             "reference": "table"
           }
         },
+        "golden pearl": {
+          "description": "a lustrous golden pearl with a faint glow",
+          "readable": false,
+          "position": {
+            "preposition": "in",
+            "reference": "old chest"
+          }
+        },
         "torn page": {
           "description": "a page torn from an old diary.",
           "readable": true,
@@ -107,6 +115,20 @@
               "liftable": false
             }
           },
+          "persons": {
+            "old man": {
+              "description": "Minding his business.",
+              "interactions": [{
+                "name": "",
+                "prompt": "You are a long way from home, traveler. The clue you seek lies in your face.",
+                "type": "passive"
+              }],
+              "position": {
+                "preposition": "walking across",
+                "reference": "Hallway"
+              }
+            }
+          },
           "exits": {
             "north": "kitchen",
             "down": "cellar",
@@ -118,7 +140,7 @@
               "description": "A heavy wooden old chest with intricate carvings stands in a shadowy corner.",
               "locked": true,
               "key_item": "chest key",
-              "items": ["golden key"]
+              "items": ["golden pearl"]
             }
           }
         },

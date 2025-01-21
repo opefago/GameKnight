@@ -51,10 +51,11 @@ class EnhancedItem(Item):
         self.size = size         # small, medium, large
 
 class EnhancedRoom(Room):
-    def __init__(self, name, description, items_dict=None):
+    def __init__(self, name, description, items_dict=None, persons={}):
         super().__init__(name, description)
         self.revealed_items = set()
         self.furniture = {}
+        self.persons = persons
         self.items_dict = items_dict or {}  # Store reference to game's items dictionary
     
     def describe_furniture_and_items(self):
@@ -67,6 +68,9 @@ class EnhancedRoom(Room):
         # Then describe each piece of furniture and its associated items
         furniture_items = {}
         standalone_items = []
+
+        persons = {}
+        standalone_persons = []
         
         # # Group items by their furniture reference
         for item_name in self.items:
@@ -118,6 +122,24 @@ class EnhancedRoom(Room):
                     item_descriptions = [self.items_dict[i].description for i in items]
                     furniture_text.append(f"{preposition.capitalize()} it, you see {self._list_to_natural_language(item_descriptions)}.")
             descriptions.append(" ".join(furniture_text))
+
+        #Describe persons
+        for person_name, person in self.persons.items():
+            person_text = []
+            if person.position:
+                ref = person.position.reference_item
+                article = "an" if person_name[0] in list("aeiou") else "a"
+                if ref in self.furniture:
+                    article = "an" if person_name[0] in list("aeiou") else "a"
+                    person_text.append(f"{article} {person_name} is {person.position.preposition} the {self.furniture[ref].lower()}.")
+                elif ref in self.items_dict:
+                    item = self.items_dict[ref]
+                    item_article = "an" if item.description[0] in list("aeiou") else "a"
+                    person_text.append(f"{article} {person_name} is {person.position.preposition} {item_article} {self.items_dict[ref].description}.")
+                else:
+                    person_text.append(f"{article} {person_name} is {person.position.preposition} the {ref}.")
+            person_text.append(person.description)
+            descriptions.append(" ".join(person_text))
         
         if standalone_items:
             descriptions.append("In the room, you also see " + 
@@ -210,6 +232,58 @@ class EnhancedRoom(Room):
             descriptions.append(desc)
         return "\n".join(descriptions) if descriptions else ""
 
+
+from enum import Enum
+
+class InteractionType(Enum):
+    PASSIVE = 1
+    ACTIVE = 2
+
+    @staticmethod
+    def from_string(label):
+        if label.lower() == "passive":
+            return InteractionType.PASSIVE
+        elif label.lower() == "active":
+            return InteractionType.ACTIVE
+        else:
+            raise ValueError("Invalid InteractionType label")
+            
+
+class InteractionAction(Enum):
+    NEXT = 1
+    PREVIOUS = 2
+    END = 3
+
+    @staticmethod
+    def from_string(label):
+        if label.lower() == "next":
+            return InteractionAction.NEXT
+        elif label.lower() == "previous":
+            return InteractionAction.PREVIOUS
+        elif label.lower() == "end":
+            return InteractionAction.END
+        else:
+            raise ValueError("Invalid IteractionAction label")
+
+class InteractionResponse:
+    def __init__(self, response, actions=[InteractionAction.END]):
+        self.response = response
+        self.actions = actions
+
+
+class Interaction:
+    def __init__(self, name, prompt, interaction_type=InteractionType.PASSIVE, responses=[]):
+        self.name = name
+        self.prompt = prompt
+        self.interaction_type = interaction_type
+        self.responses = responses
+
+class Person:
+    def __init__(self, name, description, position=None, dialogues=[]):
+        self.name = name
+        self.description = description
+        self.dialogues = dialogues
+        self.position = position
 
 class TextAdventureGame(Game):
     def __init__(self, layout_file="game_layouts.json"):
@@ -850,6 +924,36 @@ class EnhancedTextAdventureGame(TextAdventureGame):
                         hidden_items=furniture_data.get('hidden_items', [])
                     )
                 room.furniture[furniture_name] = furniture
+            
+            # create persons in the room
+            for person_name, person_data in room_data.get('persons', {}).items():
+                position_data = person_data.get('position', None)
+
+                interactions = []
+                for interaction_data in person_data.get('interactions', []):
+                    responses = []
+                    for response_data in interaction_data.get('responses', []):
+                        responses.append(InteractionResponse(
+                            response_data['response'],
+                            [InteractionAction.from_string(a) for a in response_data.get('actions', [])]
+                        ))
+                    interactions.append(Interaction(
+                        interaction_data['name'],
+                        interaction_data['prompt'],
+                        InteractionType.from_string(interaction_data.get('type', 'passive')),
+                        responses
+                    ))
+                    
+                person = Person(
+                    person_name,
+                    person_data['description'],
+                    Position(
+                        position_data.get('preposition', None),
+                        position_data.get('reference', None)
+                    ) if position_data else None,
+                    interactions
+                )
+                room.persons[person_name] = person
 
             # Handle containers and other room setup...
             if 'containers' in room_data:
@@ -971,7 +1075,7 @@ class EnhancedTextAdventureGame(TextAdventureGame):
         print("\n" + "═" * 50)
         print(f"📍 Location: {self._current_room.name}")
         print("─" * 50)
-        print(f"👁️  {self._current_room.description}")
+        print(f"👁️  {self._current_room.description}\n")
 
         # Show room description with furniture and items
         print(self._current_room.describe_furniture_and_items())
