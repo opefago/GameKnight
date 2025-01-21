@@ -310,6 +310,20 @@
             "item": "gold doubloon",
             "message": "You need the gold doubloon to unlock the secret of the cove."
           }
+        },
+        "cave": {
+          "name": "Dark Cave",
+          "description": "A dark cave with a musty smell and the sound of dripping water.",
+          "furniture": {
+            "chest": {
+              "description": "A weathered wooden chest half-buried in the sand.",
+              "liftable": false
+            }
+          },
+          "exits": {
+            "east": "beach"
+          },
+          "items": ["gold doubloon"]
         }
       }
     }
