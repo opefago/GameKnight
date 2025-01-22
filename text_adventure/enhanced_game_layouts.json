@@ -12,88 +12,48 @@
       "items": {
         "torch": {
           "description": "an ornate brass torch casting flickering shadows",
-          "readable": false,
-          "position": {
-            "preposition": "hanging on",
-            "reference": "wall"
-          }
+          "readable": false
         },
         "silver key": {
           "description": "a tarnished silver key catching dim light",
-          "readable": false,
-          "position": {
-            "preposition": "on",
-            "reference": "table"
-          }
+          "readable": false
         },
         "golden pearl": {
           "description": "a lustrous golden pearl with a faint glow",
-          "readable": false,
-          "position": {
-            "preposition": "in",
-            "reference": "old chest"
-          }
+          "readable": false
         },
         "torn page": {
           "description": "a page torn from an old diary.",
           "readable": true,
-          "content": "Day 157: The master keeps his treasures locked away. The chest key is hidden behind the loose brick in the kitchen.",
-          "position": {
-            "preposition": "on",
-            "reference": "table"
-          }
+          "content": "Day 157: The master keeps his treasures locked away. The chest key is hidden behind the loose brick in the kitchen."
         },
         "cookbook": {
           "description": "a weathered leather-bound cookbook with gilt edges",
           "readable": true,
           "content": "Most pages are filled with recipes, but there's a curious note scribbled in the margin: 'The combination to the safe is the year this mansion was built'",
-          "revealed_clue": "Look for a safe in the cellar...",
-          "position": {
-            "preposition": "on",
-            "reference": "table"
-          }
+          "revealed_clue": "Look for a safe in the cellar..."
         },
         "rusty key": {
           "description": "a heavily rusted key that might crumble if handled roughly",
-          "readable": false,
-          "position": {
-            "preposition": "under",
-            "reference": "carpet"
-          }
+          "readable": false
         },
         "old coin": {
           "description": "an ancient coin with mysterious engravings",
           "readable": true,
-          "content": "The coin has strange markings that match those on the torch",
-          "position": {
-            "preposition": "beside",
-            "reference": "wine rack"
-          }
+          "content": "The coin has strange markings that match those on the torch"
         },
         "wine bottle": {
           "description": "a dusty wine bottle with a faded label",
           "readable": true,
-          "content": "The label reads: 'Golden Estate Wine, 1842' - There's a small note attached: 'The key to the chest is hidden in plain sight.'",
-          "position": {
-            "preposition": "on",
-            "reference": "rack"
-          }
+          "content": "The label reads: 'Golden Estate Wine, 1842' - There's a small note attached: 'The key to the chest is hidden in plain sight.'"
         },
         "golden key": {
           "description": "a brilliantly polished golden key glinting in the dim light",
-          "readable": false,
-          "position": {
-            "preposition": "in",
-            "reference": "safe"
-          }
+          "readable": false
         },
         "chest key": {
           "description": "an ornate key with a chest symbol",
-          "readable": false,
-          "position": {
-            "preposition": "behind",
-            "reference": "brick"
-          }
+          "readable": false
         }
       },
       "rooms": {
@@ -118,11 +78,13 @@
           "persons": {
             "old man": {
               "description": "Minding his business.",
-              "interactions": [{
-                "name": "",
-                "prompt": "You are a long way from home, traveler. The clue you seek lies in your face.",
-                "type": "passive"
-              }],
+              "interactions": [
+                {
+                  "name": "",
+                  "prompt": "You are a long way from home, traveler. The clue you seek lies in your face.",
+                  "type": "passive"
+                }
+              ],
               "position": {
                 "preposition": "walking across",
                 "reference": "Hallway"
@@ -134,7 +96,37 @@
             "down": "cellar",
             "east": "garden"
           },
-          "items": ["torch", "silver key", "rusty key", "torn page"],
+
+          "items": [
+            {
+              "name": "torch",
+              "position": {
+                "preposition": "hanging on",
+                "reference": "wall"
+              }
+            },
+            {
+              "name": "silver key",
+              "position": {
+                "preposition": "on",
+                "reference": "table"
+              }
+            },
+            {
+              "name": "rusty key",
+              "position": {
+                "preposition": "under",
+                "reference": "carpet"
+              }
+            },
+            {
+              "name": "torn page",
+              "position": {
+                "preposition": "on",
+                "reference": "table"
+              }
+            }
+          ],
           "containers": {
             "old chest": {
               "description": "A heavy wooden old chest with intricate carvings stands in a shadowy corner.",
@@ -160,7 +152,22 @@
           "exits": {
             "south": "hall"
           },
-          "items": ["old coin", "cookbook"],
+          "items": [
+            {
+              "name": "cookbook",
+              "position": {
+                "preposition": "on",
+                "reference": "table"
+              }
+            },
+            {
+              "name": "old coin",
+              "position": {
+                "preposition": "beside",
+                "reference": "wine rack"
+              }
+            }
+          ],
           "containers": {
             "cupboard": {
               "description": "A tall wooden cupboard looms in the corner, its doors slightly ajar.",
@@ -186,7 +193,22 @@
           "exits": {
             "up": "hall"
           },
-          "items": ["old coin", "wine bottle"],
+          "items": [
+            {
+              "name": "old coin",
+              "position": {
+                "preposition": "beside",
+                "reference": "wine rack"
+              }
+            },
+            {
+              "name": "wine bottle",
+              "position": {
+                "preposition": "on",
+                "reference": "rack"
+              }
+            }
+          ],
           "containers": {
             "wall safe": {
               "description": "A sturdy iron safe built into the wall, its door secured with a rusted padlock.",
@@ -217,113 +239,6 @@
             "item": "golden key",
             "message": "The main gate is locked. You need to find the right key."
           }
-        }
-      }
-    },
-    {
-      "name": "Pirate's Cove",
-      "objective": "Retrieve the lost treasure and escape on the ship",
-      "win_condition": {
-        "room": "Hidden Cove",
-        "required_items": ["gold doubloon"],
-        "completion_message": "You place the gold doubloon in the ancient statue's hand, revealing a hidden passage to the ship. You sail away, victorious!"
-      },
-      "startRoom": "beach",
-      "items": {
-        "map": {
-          "description": "A tattered map showing the cove's layout",
-          "readable": true,
-          "content": "X marks the spot near the old palm tree",
-          "position": {
-            "preposition": "under",
-            "reference": "stone"
-          }
-        },
-        "sword": {
-          "description": "A rusty pirate sword",
-          "readable": false,
-          "position": {
-            "preposition": "leaning against",
-            "reference": "tree"
-          }
-        },
-        "gold doubloon": {
-          "description": "A shiny gold coin with a skull engraving",
-          "readable": false,
-          "position": {
-            "preposition": "in",
-            "reference": "chest"
-          }
-        }
-      },
-      "rooms": {
-        "beach": {
-          "name": "Sandy Beach",
-          "description": "A sunlit beach with waves gently lapping the shore. Palm trees sway in the breeze.",
-          "furniture": {
-            "stone": {
-              "description": "A large flat stone half-buried in the sand.",
-              "liftable": true,
-              "hidden_items": ["map"]
-            },
-            "tree": {
-              "description": "A tall palm tree with coconuts dangling from its branches.",
-              "liftable": false
-            }
-          },
-          "exits": {
-            "north": "jungle",
-            "west": "cave"
-          },
-          "items": ["sword", "map"]
-        },
-        "jungle": {
-          "name": "Dense Jungle",
-          "description": "A thick jungle with towering trees and the sound of exotic birds.",
-          "furniture": {
-            "vines": {
-              "description": "Thick vines hang from the trees, almost forming a curtain.",
-              "liftable": true,
-              "hidden_items": ["gold doubloon"]
-            }
-          },
-          "exits": {
-            "south": "beach",
-            "east": "cove"
-          },
-          "items": ["gold doubloon"]
-        },
-        "cove": {
-          "name": "Hidden Cove",
-          "description": "A secluded cove with clear blue water and a hidden dock.",
-          "furniture": {
-            "dock": {
-              "description": "An old wooden dock, creaking under the weight of time.",
-              "liftable": false
-            }
-          },
-          "exits": {
-            "west": "jungle"
-          },
-          "items": [],
-          "requires": {
-            "item": "gold doubloon",
-            "message": "You need the gold doubloon to unlock the secret of the cove."
-          }
-        },
-        "cave": {
-          "name": "Dark Cave",
-          "description": "A dark cave with a musty smell and the sound of dripping water.",
-          "furniture": {
-            "chest": {
-              "description": "A weathered wooden chest half-buried in the sand.",
-              "liftable": false
-            }
-          },
-          "exits": {
-            "east": "beach"
-          },
-          "items": ["gold doubloon"]
         }
       }
     }
