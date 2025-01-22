@@ -2,7 +2,7 @@ from game import Game
 import json
 import random
 
-from lib.command_parser import CommandParser
+from text_adventure.command_parser import CommandParser
 from text_adventure.game_objects import Container, EnhancedItem, EnhancedRoom, Furniture, Interaction, InteractionAction, InteractionResponse, InteractionType, Item, Person, Position, Room
 
 class TextAdventureGame(Game):
@@ -794,6 +794,7 @@ class EnhancedTextAdventureGame(TextAdventureGame):
         if furniture.hidden_items:
             # Add hidden items to the room
             self._current_room.add_items(furniture.hidden_items)
+            
             # Add to revealed items
             self._current_room.revealed_items.update(furniture.hidden_items)
             items_desc = ", ".join(furniture.hidden_items)
@@ -915,7 +916,7 @@ class EnhancedTextAdventureGame(TextAdventureGame):
         elif command["action"] == "lift":
             # First check if it's a piece of furniture
             furniture_name = next((f for f in self._current_room.furniture.keys() 
-                                if f.lower() in " ".join(command["direct_object"]).lower()), None)
+                                if f.lower() == command["direct_object"].lower()), None)
             if furniture_name:
                 self.lift_furniture(furniture_name)
             else:

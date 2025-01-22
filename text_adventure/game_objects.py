@@ -2,20 +2,22 @@ from dataclasses import dataclass
 
 
 class GameObject:
-    def __init__(self, name, description, position=None):
+    def __init__(self, name, description, actions=[], position=None):
         self.name = name
         self.description = description
         self.position = position
+        self.actions = actions
 
 # First, add a Furniture class
 class Furniture(GameObject):
     def __init__(self, name, description, liftable=False, hidden_items=None):
-        super().__init__(name, description)
+        super().__init__(name, description, ['lift'])
         self.name = name
         self.description = description
         self.liftable = liftable
         self.hidden_items = hidden_items or []  # Items hidden under this furniture
         self.is_lifted = False  # Track if furniture has been lifted
+        self.behind_items = []  # Items behind this furniture
 
 @dataclass
 class Position:
@@ -24,7 +26,7 @@ class Position:
 
 class Container(GameObject):
     def __init__(self, name, description, locked=False, combination=None, key_item=None):
-        super().__init__(name, description)
+        super().__init__(name, description, ['open', 'close', 'look', 'combine'])
         self.name = name
         self.description = description
         self.items = []
@@ -35,7 +37,7 @@ class Container(GameObject):
 
 class Room(GameObject):
     def __init__(self, name, description):
-        super().__init__(name, description)
+        super().__init__(name, description, ['look', 'go'])
         self.name = name
         self.description = description
         self.exits = {}
@@ -55,13 +57,13 @@ class Room(GameObject):
             if item['name'] == item_name:
                 self.items.remove(item)
                 break
-    def add_items(self, items, new_item_names):
+    def add_items(self, new_item_names):
         for name in new_item_names:
             self.items.append({'name': name})
 
 class Item(GameObject):
     def __init__(self, name, description, readable=False, content=None, revealed_clue=None):
-        super().__init__(name, description)
+        super().__init__(name, description, ['take', 'read', 'use', 'drop'])
         self.name = name
         self.description = description
         self.readable = readable
@@ -104,6 +106,13 @@ class EnhancedRoom(Room):
             if hasattr(item, 'position') and item.position:
                 # Skip hidden items that haven't been revealed
                 if item.position.preposition == "under" and item_name not in self.revealed_items:
+                    continue
+
+                if item.position.preposition == "behind":
+                    ref = item.position.reference_item
+                    if ref not in furniture_items:
+                        furniture_items[ref] = []
+                    furniture_items[ref].append(item_name)
                     continue
                 
                 ref = item.position.reference_item
@@ -148,64 +157,6 @@ class EnhancedRoom(Room):
                              self._list_to_natural_language([self.items_dict[i].description for i in standalone_items]) + ".")
 
         return "\n\n".join(descriptions)
-
-    def get_descriptive_item_list(self):
-        """Returns a naturally worded description of visible items in the room"""
-        descriptions = []
-        
-        # Group items by their positions
-        hanging_items = []
-        on_items = {}
-        under_items = {}
-        beside_items = {}
-        standalone_items = []
-        
-        for item_name in self.items:
-            item = self.items_dict[item_name]
-            # Skip items that should be hidden
-            if hasattr(item, 'position') and item.position:
-                if item.position.preposition == "under" and item_name not in self.revealed_items:
-                    continue
-                    
-                if item.position.preposition == "hanging on":
-                    hanging_items.append(item_name)
-                elif item.position.preposition == "on":
-                    ref = item.position.reference_item
-                    on_items.setdefault(ref, []).append(item_name)
-                elif item.position.preposition == "under":
-                    ref = item.position.reference_item
-                    under_items.setdefault(ref, []).append(item_name)
-                elif item.position.preposition == "beside":
-                    ref = item.position.reference_item
-                    beside_items.setdefault(ref, []).append(item_name)
-            else:
-                standalone_items.append(item_name)
-
-        # Create natural language descriptions
-        if hanging_items:
-            descriptions.append("Hanging on the walls, you see " + 
-                             self._list_to_natural_language([self.items_dict[i].description for i in hanging_items]))
-        
-        for furniture, items in on_items.items():
-            if furniture in self.furniture:
-                descriptions.append(f"{self.furniture[furniture]} On it, you see " + 
-                                 self._list_to_natural_language([self.items_dict[i].description for i in items]))
-        
-        for furniture, items in beside_items.items():
-            if furniture in self.furniture:
-                descriptions.append(f"Beside {self.furniture[furniture].lower()}, you notice " + 
-                                 self._list_to_natural_language([self.items_dict[i].description for i in items]))
-        
-        revealed = [i for i in self.revealed_items if i in self.items]
-        if revealed:
-            descriptions.append("You can now see " + 
-                             self._list_to_natural_language([self.items_dict[i].description for i in revealed]))
-        
-        if standalone_items:
-            descriptions.append("In the room, you also see " + 
-                             self._list_to_natural_language([self.items_dict[i].description for i in standalone_items]))
-        
-        return "\n".join(descriptions) if descriptions else "There's nothing of particular interest here."
 
     def _list_to_natural_language(self, items):
         if not items:
@@ -276,7 +227,7 @@ class Interaction:
 
 class Person(GameObject):
     def __init__(self, name, description, position=None, dialogues=[]):
-        super().__init__(name, description, position)
+        super().__init__(name, description,['talk'], position)
         self.name = name
         self.description = description
         self.dialogues = dialogues
