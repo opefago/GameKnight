@@ -1,17 +1,61 @@
 from dataclasses import dataclass
+from enum import Enum, auto
 
+class ObjectType(Enum):
+    ROOM = auto()
+    ITEM = auto()
+    FURNITURE = auto()
+    CONTAINER = auto()
+    PERSON = auto()
+
+    @staticmethod
+    def from_string(label):
+        if label.lower() == "room":
+            return ObjectType.ROOM
+        elif label.lower() == "item":
+            return ObjectType.ITEM
+        elif label.lower() == "furniture":
+            return ObjectType.FURNITURE
+        elif label.lower() == "container":
+            return ObjectType.CONTAINER
+        elif label.lower() == "person":
+            return ObjectType.PERSON
+        else:
+            raise ValueError("Invalid ObjectType label")
+
+    def __str__(self):
+        if self == ObjectType.ROOM:
+            return "room"
+        elif self == ObjectType.ITEM:
+            return "item"
+        elif self == ObjectType.FURNITURE:
+            return "furniture"
+        elif self == ObjectType.CONTAINER:
+            return "container"
+        elif self == ObjectType.PERSON:
+            return "person"
 
 class GameObject:
-    def __init__(self, name, description, actions=[], position=None):
+    def __init__(self, name, type, description,  actions=[], position=None):
         self.name = name
         self.description = description
         self.position = position
         self.actions = actions
+        self.type = type
+    def __str__(self):
+        return self.name + ", " + self.description + ", " + str(self.position) + ", " + str(self.actions) + ", " + str(self.type)
+    
+    def action(self, command, gameDispatcher):
+        if command['action'] in self.actions:
+            return gameDispatcher.dispatch(command)
+        else:
+            return "You can't do that."
+        
 
 # First, add a Furniture class
 class Furniture(GameObject):
     def __init__(self, name, description, liftable=False, hidden_items=None):
-        super().__init__(name, description, ['lift'])
+        super().__init__(name, ObjectType.FURNITURE, description,  ['lift'])
         self.name = name
         self.description = description
         self.liftable = liftable
@@ -26,7 +70,7 @@ class Position:
 
 class Container(GameObject):
     def __init__(self, name, description, locked=False, combination=None, key_item=None):
-        super().__init__(name, description, ['open', 'close', 'look', 'combine'])
+        super().__init__(name, ObjectType.CONTAINER , description,  ['open', 'close', 'look', 'combine'])
         self.name = name
         self.description = description
         self.items = []
@@ -37,12 +81,13 @@ class Container(GameObject):
 
 class Room(GameObject):
     def __init__(self, name, description):
-        super().__init__(name, description, ['look', 'go'])
+        super().__init__(name, ObjectType.ROOM, description, ['look', 'go'])
         self.name = name
         self.description = description
         self.exits = {}
         self.items = []
         self.containers = {}  # New dictionary to store containers
+        self.objects = {}  # New dictionary to store objects
         self.requires = None  # For rooms that require specific items to enter
     
     def find_item(self, name_to_find):
@@ -51,6 +96,7 @@ class Room(GameObject):
             if item['name'] == name_to_find:
                 return item
         return None
+    
     def remove_item(self, item_name):
        # Using a loop to remove the item
         for item in self.items:
@@ -63,7 +109,7 @@ class Room(GameObject):
 
 class Item(GameObject):
     def __init__(self, name, description, readable=False, content=None, revealed_clue=None):
-        super().__init__(name, description, ['take', 'read', 'use', 'drop'])
+        super().__init__(name, ObjectType.ITEM, description, ['take', 'read', 'use', 'drop'])
         self.name = name
         self.description = description
         self.readable = readable
@@ -84,6 +130,17 @@ class EnhancedRoom(Room):
         self.furniture = {}
         self.persons = persons
         self.items_dict = items_dict or {}  # Store reference to game's items dictionary
+    def get_all_items(self):
+        return [
+            key
+            for key, value in self.objects.items()
+            if hasattr(value, 'type') and value.type == ObjectType.ITEM
+        ] + [
+            item
+            for key, value in self.objects.items()
+            if hasattr(value, 'type') and value.type == ObjectType.CONTAINER and getattr(value, 'is_open', False)
+            for item in getattr(value, 'items', [])
+        ]
     
     def describe_furniture_and_items(self):
         """Returns a naturally worded description of the room's furniture and visible items"""
@@ -122,35 +179,37 @@ class EnhancedRoom(Room):
             else:
                 standalone_items.append(item_name)
 
-        for furniture_name, furniture in self.furniture.items():
-            furniture_text = [furniture.description]
-            if furniture.is_lifted:
-                furniture_text.append("It has been moved from its original position.")
-            if furniture_name in furniture_items:
-                items = furniture_items[furniture_name]
-                if items:
-                    preposition = self.items_dict[items[0]].position.preposition
-                    item_descriptions = [self.items_dict[i].description for i in items]
-                    furniture_text.append(f"{preposition.capitalize()} it, you see {self._list_to_natural_language(item_descriptions)}.")
-            descriptions.append(" ".join(furniture_text))
+        for furniture_name, furniture in self.objects.items():
+             if furniture.type == ObjectType.FURNITURE:
+                furniture_text = [furniture.description]
+                if furniture.is_lifted:
+                    furniture_text.append("It has been moved from its original position.")
+                if furniture_name in furniture_items:
+                    items = furniture_items[furniture_name]
+                    if items:
+                        preposition = self.items_dict[items[0]].position.preposition
+                        item_descriptions = [self.items_dict[i].description for i in items]
+                        furniture_text.append(f"{preposition.capitalize()} it, you see {self._list_to_natural_language(item_descriptions)}.")
+                descriptions.append(" ".join(furniture_text))
 
         #Describe persons
-        for person_name, person in self.persons.items():
-            person_text = []
-            if person.position:
-                ref = person.position.reference_item
-                article = "an" if person_name[0] in list("aeiou") else "a"
-                if ref in self.furniture:
+        for person_name, person in self.objects.items():
+            if person.type == ObjectType.PERSON:
+                person_text = []
+                if person.position:
+                    ref = person.position.reference_item
                     article = "an" if person_name[0] in list("aeiou") else "a"
-                    person_text.append(f"{article} {person_name} is {person.position.preposition} the {self.furniture[ref].lower()}.")
-                elif ref in self.items_dict:
-                    item = self.items_dict[ref]
-                    item_article = "an" if item.description[0] in list("aeiou") else "a"
-                    person_text.append(f"{article} {person_name} is {person.position.preposition} {item_article} {self.items_dict[ref].description}.")
-                else:
-                    person_text.append(f"{article} {person_name} is {person.position.preposition} the {ref}.")
-            person_text.append(person.description)
-            descriptions.append(" ".join(person_text))
+                    if ref in self.furniture:
+                        article = "an" if person_name[0] in list("aeiou") else "a"
+                        person_text.append(f"{article} {person_name} is {person.position.preposition} the {self.furniture[ref].lower()}.")
+                    elif ref in self.items_dict:
+                        item = self.items_dict[ref]
+                        item_article = "an" if item.description[0] in list("aeiou") else "a"
+                        person_text.append(f"{article} {person_name} is {person.position.preposition} {item_article} {self.items_dict[ref].description}.")
+                    else:
+                        person_text.append(f"{article} {person_name} is {person.position.preposition} the {ref}.")
+                person_text.append(person.description)
+                descriptions.append(" ".join(person_text))
         
         if standalone_items:
             descriptions.append("In the room, you also see " + 
@@ -170,7 +229,9 @@ class EnhancedRoom(Room):
     def describe_containers(self):
         """Returns a natural description of visible containers"""
         descriptions = []
-        for name, container in self.containers.items():
+        for name, container in self.objects.items():
+            if container.type != ObjectType.CONTAINER:
+                continue
             status = "open" if container.is_open else "closed"
             desc = f"{container.description} The {name} is {status}."
             if container.is_open and container.items:
@@ -179,8 +240,6 @@ class EnhancedRoom(Room):
             descriptions.append(desc)
         return "\n".join(descriptions) if descriptions else ""
 
-
-from enum import Enum
 
 class InteractionType(Enum):
     PASSIVE = 1
@@ -227,7 +286,7 @@ class Interaction:
 
 class Person(GameObject):
     def __init__(self, name, description, position=None, dialogues=[]):
-        super().__init__(name, description,['talk'], position)
+        super().__init__(name, ObjectType.PERSON, description,['talk'], position)
         self.name = name
         self.description = description
         self.dialogues = dialogues

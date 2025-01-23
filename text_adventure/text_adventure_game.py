@@ -2,8 +2,9 @@ from game import Game
 import json
 import random
 
+from text_adventure.command_dispatcher import CommandDispatcher
 from text_adventure.command_parser import CommandParser
-from text_adventure.game_objects import Container, EnhancedItem, EnhancedRoom, Furniture, Interaction, InteractionAction, InteractionResponse, InteractionType, Item, Person, Position, Room
+from text_adventure.game_objects import Container, EnhancedItem, EnhancedRoom, Furniture, Interaction, InteractionAction, InteractionResponse, InteractionType, Item, ObjectType, Person, Position, Room
 
 class TextAdventureGame(Game):
     def __init__(self, layout_file="game_layouts.json"):
@@ -16,6 +17,7 @@ class TextAdventureGame(Game):
         self._win_condition = None  # Add win condition
         self._completed = False    # Track if game is completed
         self._layout_file = layout_file
+        self.dispatcher = CommandDispatcher(self)
         self._command_patterns = {
             "go": ["go", "move", "walk", "run", "travel", "head", "proceed"],
             "take": ["take", "get", "grab", "pick", "collect", "acquire"],
@@ -85,6 +87,16 @@ class TextAdventureGame(Game):
             room = Room(room_data['name'], room_data['description'])
             room.exits = room_data['exits']
             room.items = room_data['items']
+            
+            for item in room_data['items']:
+                item_name = item['name']
+                position = item.get('position', {})
+                item_obj = self._items[item_name]
+                item_obj.position = Position(
+                    position.get('preposition', None),
+                    position.get('reference', None)
+                )
+                room.objects[item_name] = item_obj
 
             # Set up containers in the room
             if 'containers' in room_data:
@@ -98,6 +110,7 @@ class TextAdventureGame(Game):
                     )
                     container.items = container_data.get('items', [])
                     room.containers[container_name] = container
+                    room.objects[container_name] = container
 
             if 'requires' in room_data:
                 room.requires = room_data['requires']
@@ -339,10 +352,9 @@ class TextAdventureGame(Game):
     def read_item(self, item_name):
         """Read or examine an item"""
         item = self._items[item_name]
-        
-        # First show the item's description
+
+        # first read the item description
         print(f"\n📖 {item.description}")
-        
         # If the item is readable, show its content
         if item.readable:
             print("\n📜 Upon closer inspection:")
@@ -351,8 +363,8 @@ class TextAdventureGame(Game):
             # If there's a revealed clue, show it
             if item.revealed_clue:
                 print(f"\n💡 {item.revealed_clue}")
-        else:
-            print("\nThere's nothing more to read on this item.")
+        
+            
     
     def handle_game_completion(self):
         """Handle the game completion sequence"""
@@ -562,6 +574,7 @@ class EnhancedTextAdventureGame(TextAdventureGame):
         self._win_condition = None
         self._completed = False
         self._layout_file = layout_file
+        self.dispatcher = CommandDispatcher(self)
         self._setup_commands()
         self.setup_game()
 
@@ -637,6 +650,7 @@ class EnhancedTextAdventureGame(TextAdventureGame):
             room = EnhancedRoom(room_data['name'], room_data['description'], room_items_dict)
             room.exits = room_data['exits']
             room.items = room_data['items']
+            room.objects = room.objects | room_items_dict
 
             
             
@@ -654,6 +668,7 @@ class EnhancedTextAdventureGame(TextAdventureGame):
                         hidden_items=furniture_data.get('hidden_items', [])
                     )
                 room.furniture[furniture_name] = furniture
+                room.objects[furniture_name] = furniture
             
             # create persons in the room
             for person_name, person_data in room_data.get('persons', {}).items():
@@ -684,6 +699,7 @@ class EnhancedTextAdventureGame(TextAdventureGame):
                     interactions
                 )
                 room.persons[person_name] = person
+                room.objects[person_name] = person
 
             # Handle containers and other room setup...
             if 'containers' in room_data:
@@ -697,11 +713,11 @@ class EnhancedTextAdventureGame(TextAdventureGame):
                     )
                     container.items = container_data.get('items', [])
                     room.containers[container_name] = container
+                    room.objects[container_name] = container
 
             if 'requires' in room_data:
                 room.requires = room_data['requires']
             self._rooms[room_id] = room
-
         self._current_room = self._rooms[layout['startRoom']]
     
     def show_help(self):
@@ -775,11 +791,15 @@ class EnhancedTextAdventureGame(TextAdventureGame):
     # Add the lift_furniture method
     def lift_furniture(self, furniture_name):
         """Attempt to lift a piece of furniture"""
-        if furniture_name not in self._current_room.furniture:
+        furniture = self._current_room.objects[furniture_name]
+
+        if not furniture:
             print(f"\n❌ You don't see {furniture_name} here.")
             return
 
-        furniture = self._current_room.furniture[furniture_name]
+        if not furniture.type == ObjectType.FURNITURE:
+            print(f"\n❌ You can't lift the {furniture_name}.")
+            return
         
         if not furniture.liftable:
             print(f"\n❌ The {furniture_name} is too heavy to lift or cannot be moved.")
@@ -794,7 +814,7 @@ class EnhancedTextAdventureGame(TextAdventureGame):
         if furniture.hidden_items:
             # Add hidden items to the room
             self._current_room.add_items(furniture.hidden_items)
-            
+
             # Add to revealed items
             self._current_room.revealed_items.update(furniture.hidden_items)
             items_desc = ", ".join(furniture.hidden_items)
@@ -835,6 +855,138 @@ class EnhancedTextAdventureGame(TextAdventureGame):
                 print(f"   💎 {item}")
         
         print("═" * 50)
+
+    def go(self, command):
+        """Move the player in a direction"""
+        direction = self._identify_direction(command["direction"])
+        if direction:
+            self.move_player(direction)
+        else:
+            print("\n❓ Which direction do you want to go?")
+    
+    def look(self, command):
+        """Look around the room for items and exits"""
+        self.show_status()
+
+    def inventory(self, command):
+        """Show the player's inventory"""
+        self.show_inventory()
+    
+    def take(self, command):
+        """Take an item from the room"""
+        item = self._identify_item(command, self._current_room.get_all_items())
+        if item:
+            self.take_item(item)
+        else:
+            print("\n❌ What do you want to take?")
+
+    def drop(self, command):
+        """Drop an item from the player's inventory"""
+        item = self._identify_item(command, self._inventory)
+        if not item:
+            print("\n❌ What do you want to drop?")
+            return
+        preposition = command.get('preposition', None)
+        if preposition == "in":
+            container_name = command.get('direct_object', None)
+            if container_name:
+                object =self._current_room.objects[container_name]
+                if object.type == "container":
+                    self.put_item_in_container(item, container_name)
+                    return
+                else:
+                    print("\n❓ You can't put it in that.")
+                    return
+            else:
+                print("\n❓ What do you want to drop?")
+                return
+        elif preposition == "on":
+            furniture_name = command.get('reference', None)
+            if furniture_name:
+                furniture = self._current_room.objects[furniture_name]
+                if furniture.type == ObjectType.FURNITURE:
+                    position = Position("on", furniture_name)
+                    self._current_room.objects[item].position = position
+                    self.drop_item(item)
+                    return
+                elif furniture.type == "person":
+                    print("\n❓ Shocking you want to put it on that person.")
+                else: 
+                    print("\n❓ You can't put it on that.")
+                return
+            else:
+                print("\n❓ What do you want to put it on?")
+                return
+        
+        self.drop_item(item)
+        
+    def quit(self, command):
+        """Quit the game"""
+        self.is_running = False
+
+    def help(self, command):
+        """Show available commands"""
+        self.show_help()
+    
+    def read(self, command):
+        """Read or examine an item"""
+        item_name = self._identify_item(command, self._inventory + self._current_room.get_all_items())
+        if item_name:
+            self.read_item(item_name)
+        else:
+            print("\n❌ What do you want to read?")
+
+    def combine(self, command):
+        """Try a combination on a locked container"""
+        container_name = self._identify_container(command)
+        # Look for numbers in the input
+        numbers = [word for word in command["direct_object"].split() if word.isdigit()]
+        if len(numbers) == 0:
+            numbers = [word for word in command["indirect_object"].split() if word.isdigit()]
+        if container_name and numbers:
+            self.try_combination(container_name, "".join(numbers))
+        else:
+            print("\n❓ Please specify a container and combination.")
+    def put(self, command):
+        """Put an item into a container"""
+        item = self._identify_item(command, self._inventory)
+        container_name = self._identify_container(command)
+        if item and container_name:
+            self.put_item_in_container(item, container_name)
+        else:
+            print("\n❓ Please specify both an item and a container.")
+
+    def open(self, command):
+        """Open a container"""
+        container_name = self._identify_container(command)
+        if container_name:
+            self.open_container(container_name)
+        else:
+            print("\n❓ What do you want to open?")
+
+    def close(self, command):
+        """Close a container"""
+        container_name = self._identify_container(command)
+        if container_name:
+            self.close_container(container_name)
+        else:
+            print("\n❓ What do you want to close?")
+
+    def talk(self, command):
+        """Talk to a person in the room"""
+        person_name = command.get('direct_object', None)
+        if person_name:
+            person = self._current_room.persons.get(person_name)
+            if person:
+                self.talk_to_person(person)
+            else:
+                print(f"\n❌ There's no {person_name} here.")
+        else:
+            print("\n❓ Who do you want to talk to?")
+    
+    def objective(self, command):
+        """Show the current objective"""
+        self.show_objective()
     
     def get_command(self):
         """Gets and processes user command with natural language understanding"""
@@ -853,72 +1005,86 @@ class EnhancedTextAdventureGame(TextAdventureGame):
             self.show_inventory()
         elif command["action"] == "objective":
             self.show_objective()
-        elif command["action"] == "go":
-            direction = self._identify_direction(command["direction"])
-            if direction:
-                self.move_player(direction)
-            else:
-                print("\n❓ Which direction do you want to go?")
-        elif command["action"] == "take":
-            #combine the items in the room and the items in the containers
-            items = [item['name'] for item in self._current_room.items] + [item for container in self._current_room.containers.values() for item in container.items if container.is_open]
-            item = self._identify_item(command, items)
-            if item:
-                self.take_item(item)
-            else:
-                print("\n❌ What do you want to take?")
-        elif command["action"] == "drop":
-                item = self._identify_item(command, self._inventory)
-                if item:
-                    self.drop_item(item)
-                else:
-                    print("\n❌ What do you want to drop?")
-        elif command["action"] in ["read", "examine"]:
-            item_name = self._identify_item(command, self._inventory + [item['name'] for item in self._current_room.items])
-            if item_name:
-                self.read_item(item_name)
-            else:
-                print("\n❌ What do you want to read?")
-        elif command["action"] == "open":
-            container_name = self._identify_container(command)
-            if container_name:
-                self.open_container(container_name)
-            else:
-                print("\n❓ What do you want to open?")
-        
-        elif command["action"] == "close":
-            container_name = self._identify_container(command)
-            if container_name:
-                self.close_container(container_name)
-            else:
-                print("\n❓ What do you want to close?")
-        
-        elif command["action"] == "put":
-            item = self._identify_item(command, self._inventory)
-            container_name = self._identify_container(command)
-            if item and container_name:
-                self.put_item_in_container(item, container_name)
-            else:
-                print("\n❓ Please specify both an item and a container.")
-        
-        elif command["action"] == "combine":
-            container_name = self._identify_container(command)
-            # Look for numbers in the input
-            numbers = [word for word in command["direct_object"].split() if word.isdigit()]
-            if len(numbers) == 0:
-                numbers = [word for word in command["indirect_object"].split() if word.isdigit()]
-            if container_name and numbers:
-                self.try_combination(container_name, "".join(numbers))
-            else:
-                print("\n❓ Please specify a container and combination.")
         elif command["action"] == "help":
             self.show_help()
-        elif command["action"] == "lift":
-            # First check if it's a piece of furniture
-            furniture_name = next((f for f in self._current_room.furniture.keys() 
-                                if f.lower() == command["direct_object"].lower()), None)
-            if furniture_name:
-                self.lift_furniture(furniture_name)
+        else:
+            direct_object = command.get("direct_object", None)
+            if not direct_object:
+                print("\n❓ What do you want to do that to?")
+                return
+            object = self._current_room.objects.get(direct_object, None)
+            if object:
+                object.action(command, self.dispatcher)
             else:
-                print("\n❓ What do you want to lift?")
+                print("\n❌ You don't see that here!")
+        # elif command["action"] == "go":
+        #     direction = self._identify_direction(command["direction"])
+        #     if direction:
+        #         self.move_player(direction)
+        #     else:
+        #         print("\n❓ Which direction do you want to go?")
+        # elif command["action"] == "take":
+        #     object = self._current_room.objects[command["direct_object"]]
+        #     print(object)
+            
+        #     #combine the items in the room and the items in the containers
+        #     items = [item['name'] for item in self._current_room.items] + [item for container in self._current_room.containers.values() for item in container.items if container.is_open]
+        #     item = self._identify_item(command, items)
+        #     if item:
+        #         self.take_item(item)
+        #     else:
+        #         print("\n❌ What do you want to take?")
+        # elif command["action"] == "drop":
+        #         item = self._identify_item(command, self._inventory)
+        #         if item:
+        #             self.drop_item(item)
+        #         else:
+        #             print("\n❌ What do you want to drop?")
+        # elif command["action"] in ["read", "examine"]:
+        #     item_name = self._identify_item(command, self._inventory + [item['name'] for item in self._current_room.items])
+        #     if item_name:
+        #         self.read_item(item_name)
+        #     else:
+        #         print("\n❌ What do you want to read?")
+        # elif command["action"] == "open":
+        #     container_name = self._identify_container(command)
+        #     if container_name:
+        #         self.open_container(container_name)
+        #     else:
+        #         print("\n❓ What do you want to open?")
+        
+        # elif command["action"] == "close":
+        #     container_name = self._identify_container(command)
+        #     if container_name:
+        #         self.close_container(container_name)
+        #     else:
+        #         print("\n❓ What do you want to close?")
+        
+        # elif command["action"] == "put":
+        #     item = self._identify_item(command, self._inventory)
+        #     container_name = self._identify_container(command)
+        #     if item and container_name:
+        #         self.put_item_in_container(item, container_name)
+        #     else:
+        #         print("\n❓ Please specify both an item and a container.")
+        
+        # elif command["action"] == "combine":
+        #     container_name = self._identify_container(command)
+        #     # Look for numbers in the input
+        #     numbers = [word for word in command["direct_object"].split() if word.isdigit()]
+        #     if len(numbers) == 0:
+        #         numbers = [word for word in command["indirect_object"].split() if word.isdigit()]
+        #     if container_name and numbers:
+        #         self.try_combination(container_name, "".join(numbers))
+        #     else:
+        #         print("\n❓ Please specify a container and combination.")
+        
+        # elif command["action"] == "lift":
+        #     # First check if it's a piece of furniture
+        #     furniture_name = next((f for f in self._current_room.furniture.keys() 
+        #                         if f.lower() == command["direct_object"].lower()), None)
+        #     if furniture_name:
+        #         self.lift_furniture(furniture_name)
+        #     else:
+        #         print("\n❓ What do you want to lift?")
         

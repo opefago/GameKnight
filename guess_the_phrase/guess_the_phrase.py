@@ -16,7 +16,7 @@ class GuessThePhraseGame(Game):
         self.__cost_per_failed_attempt = 150
         self.__MAX_ATTEMPTS = 3
         self.__currency = "₦"
-        self.__separator = "   "
+        self.__separator = "         "
     
     def name(self):
         return "Guess The Phrase"

@@ -45,7 +45,7 @@ VERBS_WITH_ALIASES = {
     "combine": ["combine", "enter", "input"],  # For combination locks
     "lift": ["lift", "raise", "move", "shift", "check under"],
     # Observation verbs
-    "look": ["look", "see", "watch", "observe", "inspect", "notice", "view", "examine", "inspect", "scan", "peer", "gaze", "stare", "glance", "glimpse", "peek", "spy", "spot", "discern", "discriminate", "distinguish", "scan", "search", "inspect", "study"],
+    "look": ["look", "see", "watch", "observe",  "notice", "view", "examine",  "scan", "peer", "gaze", "stare", "glance", "glimpse", "peek", "spy", "spot", "discern", "discriminate", "distinguish", "scan", "search", "study"],
     # Analysis verbs
     # 'discern': ['distinguish', 'recognize'],
     # 'discriminate': ['distinguish', 'differentiate'],
@@ -167,12 +167,11 @@ VERBS_WITH_ALIASES = {
     "inventory": ["inventory", "inv", "i", "items", "bag"],
     "quit": ["quit", "exit", "bye", "goodbye", "end"],
     "read": ["read", "examine", "inspect", "look", "check", 'peruse', 'study'],
-    "examine": ["examine", "inspect", "look", "check", "study"],
     "open": ["open", "unlock", "access"],
 
 }
 
-ARTICLES = [ "a", "an", "the", "some ", "few", "many", "several", "this", "that", "these", "those", "to", "with", "at", "on"]
+ARTICLES = [ "a", "an", "the", "some ", "few", "many", "several", "this", "that", "these", "those", "to", "with", "at"]
 
 class CommandParseError(Exception):
     pass
