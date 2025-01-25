@@ -16,6 +16,8 @@ class CommandDispatcher:
             'close': self.game.close,
             'talk': self.game.talk,
             'objective': self.game.objective,
+            'light': self.game.light,
+            'lift': self.game.lift,
         }
 
     def dispatch(self, command):

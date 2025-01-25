@@ -23,7 +23,7 @@
           "readable": false
         },
         "torn page": {
-          "description": "a page torn from an old diary.",
+          "description": "a torn page from an old diary.",
           "readable": true,
           "content": "Day 157: The master keeps his treasures locked away. The chest key is hidden behind the loose brick in the kitchen."
         },
@@ -34,7 +34,7 @@
           "revealed_clue": "Look for a safe in the cellar..."
         },
         "rusty key": {
-          "description": "a heavily rusted key that might crumble if handled roughly",
+          "description": "a heavily rusty key that might crumble if handled roughly",
           "readable": false
         },
         "old coin": {
@@ -63,8 +63,7 @@
           "furniture": {
             "carpet": {
               "description": "A once-magnificent Persian carpet covers the center of the floor.",
-              "liftable": true,
-              "hidden_items": ["rusty key"]
+              "liftable": true
             },
             "table": {
               "description": "An antique mahogany table stands against the far wall, its surface covered in a fine layer of dust.",
@@ -172,7 +171,7 @@
             "cupboard": {
               "description": "A tall wooden cupboard looms in the corner, its doors slightly ajar.",
               "locked": false,
-              "items": ["chest key", "rusty key"]
+              "items": ["chest key"]
             },
             "loose brick": {
               "description": "A single brick in the wall seems slightly out of place, as if it has been disturbed recently.",

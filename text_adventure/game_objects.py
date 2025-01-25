@@ -1,9 +1,12 @@
 from dataclasses import dataclass
 from enum import Enum, auto
 
+from util.text_utils import TextUtils
+
 class ObjectType(Enum):
     ROOM = auto()
     ITEM = auto()
+    DOOR = auto()
     FURNITURE = auto()
     CONTAINER = auto()
     PERSON = auto()
@@ -20,6 +23,8 @@ class ObjectType(Enum):
             return ObjectType.CONTAINER
         elif label.lower() == "person":
             return ObjectType.PERSON
+        elif label.lower() == "door":
+            return ObjectType.DOOR
         else:
             raise ValueError("Invalid ObjectType label")
 
@@ -34,6 +39,8 @@ class ObjectType(Enum):
             return "container"
         elif self == ObjectType.PERSON:
             return "person"
+        elif self == ObjectType.DOOR:
+            return "door"
 
 class GameObject:
     def __init__(self, name, type, description,  actions=[], position=None):
@@ -60,6 +67,7 @@ class Furniture(GameObject):
         self.description = description
         self.liftable = liftable
         self.hidden_items = hidden_items or []  # Items hidden under this furniture
+        self.reavealed_items = []  # Items revealed when this furniture is lifted
         self.is_lifted = False  # Track if furniture has been lifted
         self.behind_items = []  # Items behind this furniture
 
@@ -123,13 +131,32 @@ class EnhancedItem(Item):
         self.reveals = reveals or []   # List of items revealed when this item is taken
         self.size = size         # small, medium, large
 
+
+class RequirementType(Enum):
+    ITEM = auto()
+    ACTION = auto()
+    COMBINATION = auto()
+
+@dataclass
+class Requirement:
+    type: RequirementType
+    targets: list = None
+
+class Door(GameObject):
+    def __init__(self, name, description, locked=False):
+        super().__init__(name, ObjectType.ITEM, description, ['open', 'close', 'look', 'use'])
+        self.locked = locked
+        self.requirement = None
+
 class EnhancedRoom(Room):
-    def __init__(self, name, description, items_dict=None, persons={}):
+    def __init__(self, name, description, persons={}):
         super().__init__(name, description)
         self.revealed_items = set()
         self.furniture = {}
         self.persons = persons
-        self.items_dict = items_dict or {}  # Store reference to game's items dictionary
+        self.is_dark = False
+        self.door = None
+
     def get_all_items(self):
         return [
             key
@@ -159,7 +186,7 @@ class EnhancedRoom(Room):
         # # Group items by their furniture reference
         for item_obj in self.items:
             item_name = item_obj['name']
-            item = self.items_dict[item_name]
+            item = self.objects[item_name]
             if hasattr(item, 'position') and item.position:
                 # Skip hidden items that haven't been revealed
                 if item.position.preposition == "under" and item_name not in self.revealed_items:
@@ -181,14 +208,14 @@ class EnhancedRoom(Room):
 
         for furniture_name, furniture in self.objects.items():
              if furniture.type == ObjectType.FURNITURE:
-                furniture_text = [furniture.description]
+                furniture_text = [TextUtils.find_replace_enbolden(furniture.description, furniture_name)]
                 if furniture.is_lifted:
                     furniture_text.append("It has been moved from its original position.")
                 if furniture_name in furniture_items:
                     items = furniture_items[furniture_name]
                     if items:
-                        preposition = self.items_dict[items[0]].position.preposition
-                        item_descriptions = [self.items_dict[i].description for i in items]
+                        preposition = self.objects[items[0]].position.preposition
+                        item_descriptions = [TextUtils.find_replace_enbolden(self.objects[i].description, self.objects[i].name) for i in items]
                         furniture_text.append(f"{preposition.capitalize()} it, you see {self._list_to_natural_language(item_descriptions)}.")
                 descriptions.append(" ".join(furniture_text))
 
@@ -199,21 +226,21 @@ class EnhancedRoom(Room):
                 if person.position:
                     ref = person.position.reference_item
                     article = "an" if person_name[0] in list("aeiou") else "a"
-                    if ref in self.furniture:
+                    ref_obj = self.objects.get(ref, None)
+                    if ref_obj and ref_obj.type == ObjectType.FURNITURE:
                         article = "an" if person_name[0] in list("aeiou") else "a"
-                        person_text.append(f"{article} {person_name} is {person.position.preposition} the {self.furniture[ref].lower()}.")
-                    elif ref in self.items_dict:
-                        item = self.items_dict[ref]
-                        item_article = "an" if item.description[0] in list("aeiou") else "a"
-                        person_text.append(f"{article} {person_name} is {person.position.preposition} {item_article} {self.items_dict[ref].description}.")
+                        person_text.append(f"{article} {TextUtils.enbolden(person_name)} is {person.position.preposition} the {self.furniture[ref].lower()}.")
+                    elif ref_obj and ref_obj.type == ObjectType.ITEM:
+                        item_article = "an" if ref_obj.description[0] in list("aeiou") else "a"
+                        person_text.append(f"{article} {TextUtils.enbolden(person_name)} is {person.position.preposition} {item_article} {ref_obj.description}.")
                     else:
-                        person_text.append(f"{article} {person_name} is {person.position.preposition} the {ref}.")
+                        person_text.append(f"{article} {TextUtils.enbolden(person_name)} is {person.position.preposition} the {ref}.")
                 person_text.append(person.description)
                 descriptions.append(" ".join(person_text))
         
         if standalone_items:
             descriptions.append("In the room, you also see " + 
-                             self._list_to_natural_language([self.items_dict[i].description for i in standalone_items]) + ".")
+                             self._list_to_natural_language([self.objects[i].description for i in standalone_items]) + ".")
 
         return "\n\n".join(descriptions)
 
@@ -233,9 +260,9 @@ class EnhancedRoom(Room):
             if container.type != ObjectType.CONTAINER:
                 continue
             status = "open" if container.is_open else "closed"
-            desc = f"{container.description} The {name} is {status}."
+            desc = f"{TextUtils.find_replace_enbolden(container.description, container.name)} The {TextUtils.enbolden(name)} is {status}."
             if container.is_open and container.items:
-                item_descs = [self.items_dict[i].description for i in container.items]
+                item_descs = [TextUtils.find_replace_enbolden(self.objects[i].description, self.objects[i].name) for i in container.items]
                 desc += f" Inside, you can see {self._list_to_natural_language(item_descs)}."
             descriptions.append(desc)
         return "\n".join(descriptions) if descriptions else ""

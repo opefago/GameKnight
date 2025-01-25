@@ -3,9 +3,9 @@ PREPOSITIONS = [
     "to", "toward", "towards", "into", "onto", "upon", "in", "inside", "within", "through", 
     "across", "over", "under", "beneath", "below", "behind", "beside", "between", "beyond", 
     "by", "near", "next", "past", "throughout", "along", "amid", "among", "around", "at", 
-    "before", "behind", "below", "beneath", "beside", "between", "beyond", "by", "down", 
+    "before", "behind", "below", "beneath", "beside", 
     "from", "in", "inside", "into", "near", "off", "on", "onto", "out", "outside", "over", 
-    "through", "to", "toward", "towards", "under", "up", "with", "within", "without", 
+    "through", "to", "toward", "towards", "under", "with", "within", "without", 
 ]
 
 VERBS = [
@@ -44,6 +44,7 @@ VERBS_WITH_ALIASES = {
     "put": ["put", "place", "insert"],
     "combine": ["combine", "enter", "input"],  # For combination locks
     "lift": ["lift", "raise", "move", "shift", "check under"],
+    "light": ["light", "ignite", "alight", "fire"],
     # Observation verbs
     "look": ["look", "see", "watch", "observe",  "notice", "view", "examine",  "scan", "peer", "gaze", "stare", "glance", "glimpse", "peek", "spy", "spot", "discern", "discriminate", "distinguish", "scan", "search", "study"],
     # Analysis verbs

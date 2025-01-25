@@ -4,7 +4,8 @@ import random
 
 from text_adventure.command_dispatcher import CommandDispatcher
 from text_adventure.command_parser import CommandParser
-from text_adventure.game_objects import Container, EnhancedItem, EnhancedRoom, Furniture, Interaction, InteractionAction, InteractionResponse, InteractionType, Item, ObjectType, Person, Position, Room
+from text_adventure.game_objects import Container, Door, EnhancedItem, EnhancedRoom, Furniture, Interaction, InteractionAction, InteractionResponse, InteractionType, Item, ObjectType, Person, Position, Requirement, Room
+from util.text_utils import TextUtils
 
 class TextAdventureGame(Game):
     def __init__(self, layout_file="game_layouts.json"):
@@ -648,6 +649,16 @@ class EnhancedTextAdventureGame(TextAdventureGame):
                 room_items_dict[item_name] = room_obj
 
             room = EnhancedRoom(room_data['name'], room_data['description'], room_items_dict)
+            door = room_data.get('door', None)
+            # //name, description, locked=False, key_item=None
+            if door:
+                room.door = Door(door.get('name', 'door'), door.get('description', 'A simple door'), door.get('locked', False))
+                requirement = door.get('requirement', None)
+                if requirement:
+                    room.door.requirement = Requirement(requirement.get('type', None), requirement.get('targets', None))
+
+                room.objects[door.get('name', 'door')] = room.door
+
             room.exits = room_data['exits']
             room.items = room_data['items']
             room.objects = room.objects | room_items_dict
@@ -667,7 +678,6 @@ class EnhancedTextAdventureGame(TextAdventureGame):
                         liftable=furniture_data.get('liftable', False),
                         hidden_items=furniture_data.get('hidden_items', [])
                     )
-                room.furniture[furniture_name] = furniture
                 room.objects[furniture_name] = furniture
             
             # create persons in the room
@@ -714,6 +724,15 @@ class EnhancedTextAdventureGame(TextAdventureGame):
                     container.items = container_data.get('items', [])
                     room.containers[container_name] = container
                     room.objects[container_name] = container
+
+                    for item_name in container.items:
+                        item_obj = self._items[item_name]
+                        item_obj.position = Position(
+                            'in',
+                            container_name
+                        )
+                        if item_name not in room.objects:
+                            room.objects[item_name] = item_obj
 
             if 'requires' in room_data:
                 room.requires = room_data['requires']
@@ -808,19 +827,16 @@ class EnhancedTextAdventureGame(TextAdventureGame):
         if furniture.is_lifted:
             print(f"\n❌ You've already moved the {furniture_name}.")
             return
+        
+        #find all the items in the room hidden under the furniture
+        hidden_items = [item['name'] for item in self._current_room.items if item['position'] and item['position']['preposition'] == "under" and item['position']['reference'] == furniture_name]
 
         furniture.is_lifted = True
+        # Add to revealed items
+        self._current_room.revealed_items.update(hidden_items)
+        items_desc = ", ".join(hidden_items)
+        print(f"\n✨ You lift the {furniture_name} and find: {items_desc}")
         
-        if furniture.hidden_items:
-            # Add hidden items to the room
-            self._current_room.add_items(furniture.hidden_items)
-
-            # Add to revealed items
-            self._current_room.revealed_items.update(furniture.hidden_items)
-            items_desc = ", ".join(furniture.hidden_items)
-            print(f"\n✨ You lift the {furniture_name} and find: {items_desc}")
-        else:
-            print(f"\n❌ You lift the {furniture_name} but find nothing underneath.")
 
     def show_status(self):
         """Shows current room with enhanced descriptions"""
@@ -828,6 +844,20 @@ class EnhancedTextAdventureGame(TextAdventureGame):
         print(f"📍 Location: {self._current_room.name}")
         print("─" * 50)
         print(f"👁️  {self._current_room.description}\n")
+        
+        if self._current_room.is_dark:
+            self._current_room.is_dark = False
+            print("🌑 The room is dark. You can't see anything.")
+            print("🔦 You might need a light source to see better.")
+            print("🔦 You can use the 'take torch' command to pick up a torch.")
+            print("🔦 Once you have the torch, you can use the 'light torch' command to illuminate the room.")
+            print("🔦 The torch will automatically light up dark rooms.")
+            print("🔦 You can also use the 'inventory' command to check your items.")
+            print("🔦 Try 'help' for a list of commands.")
+            print("═" * 50)
+            return
+            
+
 
         # Show room description with furniture and items
         print(self._current_room.describe_furniture_and_items())
@@ -863,10 +893,29 @@ class EnhancedTextAdventureGame(TextAdventureGame):
             self.move_player(direction)
         else:
             print("\n❓ Which direction do you want to go?")
+    def look_in_direction(self, direction):
+        if direction in self._current_room.exits:
+            next_room = self._rooms[self._current_room.exits[direction]]
+            print(f"\n👁️  You look to the {direction} and see:")
+            if next_room.door:
+                print(f"   {TextUtils.enbolden(next_room.door.description, next_room.door.name)}")
+            elif next_room.is_dark:
+                print(f"   A dark room. From here, you can't make out what's inside.")
+            else:
+                print(f"   {TextUtils.enbolden(next_room.name)}")
+            
+        else:
+            print(f"\n❌ There's no exit to the {direction}.")
     
     def look(self, command):
         """Look around the room for items and exits"""
-        self.show_status()
+        direction = command.get('direction', None)
+        if direction:
+            self.look_in_direction(direction)
+        else:
+            direct_object = command.get('direct_object', None)
+            if direct_object:
+                self.look_at_object(direct_object)
 
     def inventory(self, command):
         """Show the player's inventory"""
@@ -987,6 +1036,70 @@ class EnhancedTextAdventureGame(TextAdventureGame):
     def objective(self, command):
         """Show the current objective"""
         self.show_objective()
+
+    def light_torch(self):
+        if self._inventory.count("torch") > 0:
+            if self._current_room.is_dark:
+                self._current_room.is_dark = False
+                print("\n✨ The room is now illuminated.")
+            else:
+                print("\n❓ The room is already lit. Do you want to look around?")
+        else:
+            print("\n❌ You do not have a light source in your inventory, do you want to look around?")
+    
+    def light(self, command):
+        """Light up a dark room"""
+        direct_object = command.get('direct_object', None)
+        if not direct_object:
+            print("\n❓ What do you want to light?")
+            return
+        if direct_object == "torch":
+            self.light_torch()
+        else:
+            print("\n❓ What do you want to light?")
+
+    def lift(self, command):
+        """Lift a piece of furniture"""
+        furniture_name = command.get('direct_object', None)
+        if furniture_name:
+            self.lift_furniture(furniture_name)
+        else:
+            print("\n❓ What do you want to lift?")
+
+    def show_inventory(self):
+        """Show the player's inventory"""
+        if self._inventory:
+            print("\n🎒 Inventory:")
+            for item in self._inventory:
+                print(f"   💎 {item}")
+        else:
+            print("\n🎒 Your inventory is empty.")
+    
+    def open_container(self, container_name):
+        """Opens a container if possible"""
+        container = self._current_room.containers.get(container_name)
+        if not container:
+            print(f"\n❌ There's no {container_name} here.")
+            return
+
+        if container.is_open:
+            print(f"\n❌ The {container_name} is already open.")
+            return
+
+        if container.locked:
+            if container.key_item:
+                if container.key_item not in self._inventory:
+                    print(f"\n🔒 The {container_name} is locked. You need a {container.key_item}.")
+                    return
+                print(f"\n✨ You unlock the {container_name} with the {container.key_item}.")
+            else:
+                print(f"\n🔒 The {container_name} is locked. It has a combination lock.")
+                return
+
+        container.is_open = True
+        print(f"\n✅ You open the {container_name}.")
+        if self.check_win_condition():  # Check win condition after opening container
+            self._completed = True
     
     def get_command(self):
         """Gets and processes user command with natural language understanding"""
@@ -1007,10 +1120,15 @@ class EnhancedTextAdventureGame(TextAdventureGame):
             self.show_objective()
         elif command["action"] == "help":
             self.show_help()
+        elif command["action"] == "go":
+            self.go(command)
+        elif command["action"] == "look" and command.get("direction"):
+            self.look(command)
         else:
             direct_object = command.get("direct_object", None)
             if not direct_object:
-                print("\n❓ What do you want to do that to?")
+                print("\n❓ Can you elaborate what you would like to do with that action?")
+                print(f"   Try adding object to your sentence like '{command['action']} item name'")
                 return
             object = self._current_room.objects.get(direct_object, None)
             if object:
