@@ -1,0 +1,1057 @@
+[
+    {
+        "facts": ["Bananas are berries.", "Goldfish have a three-second memory.", "The Eiffel Tower grows in summer."],
+        "fake_index": 1,
+        "difficulty": "easy"
+    },
+    {
+        "facts": ["A day on Venus is longer than a year on Venus.", "Octopuses have three hearts.", "Penguins can fly."],
+        "fake_index": 2,
+        "difficulty": "medium"
+    },
+    {
+        "facts": ["Lightning never strikes the same place twice.", "Water can boil and freeze at the same time.", "Honey never spoils."],
+        "fake_index": 0,
+        "difficulty": "hard"
+    },
+    {
+        "facts": ["A day on Venus is longer than its year.", "The core of the Earth is hotter than the surface of the sun.", "A vampire bat can drink 40% of its body weight in blood."],
+        "fake_index": 1,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["Bananas are berries, but strawberries aren't.", "Some species of jellyfish are biologically immortal.", "A hummingbird's heart beats over 1,200 times per minute."],
+        "fake_index": 0,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["Octopuses have three hearts.", "Honey never spoils.", "The average person blinks over 10 million times a year."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The Great Wall of China uses sticky rice as mortar.", "A snail can sleep for three years continuously.", "Cats have five eyelids."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The average cloud weighs 1.1 million pounds.", "A mantis shrimp can punch with the force of a .22 caliber bullet.", "Elephants are the only mammals that can't jump."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["Some trees communicate through an underground network of fungi.", "Tigers have striped skin, not just striped fur.", "A chameleon's tongue is three times the length of its body."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The fingerprints of koalas are so similar to humans they can be confused at crime scenes.", "A cockroach can live for several weeks without its head.", "Sound travels four times faster in water than in air."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The total weight of all ants on Earth is greater than the total weight of all humans.", "Dolphins give each other names.", "A lion's roar can be heard from 8 kilometers away."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The first oranges weren't orange.", "A neutron star is so dense that a teaspoon would weigh billions of tons.", "Humans share 98% of their DNA with dolphins."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The average person spends 6 months of their lifetime waiting for red lights to turn green.", "Sloths take two weeks to digest their food.", "A bee must visit 20,000 flowers to make one teaspoon of honey."],
+        "fake_index": 1,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The platypus has no stomach.", "A kangaroo can't jump if its tail is lifted off the ground.", "Polar bears have transparent fur."],
+        "fake_index": 1,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The world's deepest postbox is in Japan's Susami, 10 meters underwater.", "Hippopotamuses secrete natural sunscreen.", "Camels store water in their humps."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The Eiffel Tower can grow up to 6 inches taller during summer.", "Wombats produce cube-shaped droppings.", "A giraffe's spots are as unique as human fingerprints."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The average person walks past 36 murderers in their lifetime.", "Some species of bamboo can grow up to 35 inches in a single day.", "An octopus has blue blood."],
+        "fake_index": 0,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The human body contains enough iron to make a 3-inch nail.", "A day on Mars is almost exactly the same length as a day on Earth.", "Penguins have knees."],
+        "fake_index": 0,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The longest word typed with just the left hand is 'stewardesses'.", "Kangaroos can't walk backwards.", "The average person blinks 20 million times a year."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The Romans used to clean and whiten their teeth with urine.", "Rabbits can't vomit.", "An ant can lift 1000 times its own body weight."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["Cats can't taste sweetness.", "A blue whale's tongue weighs as much as an elephant.", "A snail has over 25,000 teeth."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The inventor of the Frisbee was turned into a Frisbee after death.", "The shortest commercial flight in the world takes 1.5 minutes.", "A crocodile can't stick its tongue out."],
+        "fake_index": 0,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["There are more fake flamingos in the world than real ones.", "Cows have best friends and get stressed when separated.", "The human body produces enough heat in 30 minutes to boil a gallon of water."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The world's oldest known living tree is over 5,000 years old.", "A day on Venus is longer than its year.", "A single strand of spider silk is stronger than steel of the same thickness."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["Polar bears have black skin under their white fur.", "The average person has over 1,460 dreams per year.", "A grasshopper's ear is on its belly."],
+        "fake_index": 1,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The platypus has no stomach.", "The average person spends 4 years of their life looking at their phone.", "An octopus has nine brains."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The longest recorded flight of a chicken is 13 seconds.", "Elephants are the only mammals that can't jump.", "The Great Wall of China is made with rice flour mortar."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["A day on Mars is almost exactly the same length as a day on Earth.", "Bananas are berries, but strawberries aren't.", "The human body contains enough gold to make a wedding ring."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["Some mushrooms glow in the dark.", "The average person walks past 36 murderers in their lifetime.", "Penguins mate for life and propose with pebbles."],
+        "fake_index": 1,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["A bolt of lightning is five times hotter than the sun's surface.", "Honey never spoils.", "A shark's skeleton is made entirely of cartilage."],
+        "fake_index": 0,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The moon is slowly moving away from Earth.", "Polar bears are left-handed.", "A cheetah can change direction mid-air while sprinting."],
+        "fake_index": 1,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The average person spends two weeks in a year waiting for traffic lights.", "The human brain can process images seen for as little as 13 milliseconds.", "Ants never sleep."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The word 'nerd' was first coined by Dr. Seuss.", "A crocodile can't move its tongue.", "The average person walks the equivalent of five times around the Earth in their lifetime."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["Astronauts grow up to 2 inches taller in space.", "The average person blinks around 25,000 times a day.", "A rhinoceros' horn is made of compressed hair."],
+        "fake_index": 1,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The fingerprints of koalas are so similar to humans they can be confused at crime scenes.", "A bee's brain is oval shaped.", "The average person spends 6 months of their lifetime waiting for red lights to turn green."],
+        "fake_index": 1,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["Kangaroos can't walk backwards.", "The heart of a shrimp is located in its head.", "A lion's roar can be heard from 5 miles away."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["A day on Venus is longer than its year.", "The average cloud weighs 1.1 million pounds.", "Penguins have silver teeth."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["Bananas are slightly radioactive.", "An octopus has three hearts.", "The human body produces enough saliva to fill two swimming pools in a lifetime."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The longest recorded flight of a chicken is 13 seconds.", "A mosquito has 47 teeth.", "An ostrich's eye is bigger than its brain."],
+        "fake_index": 1,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["There are more trees on Earth than stars in the Milky Way.", "Butterflies taste with their feet.", "A giraffe can clean its ears with its tongue."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The shortest war in history lasted 38 minutes.", "Honey never spoils.", "A chameleon's tail is exactly as long as its body."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["Cats can't taste sweetness.", "The average person spends 6 years of their life dreaming.", "A starfish can regenerate its entire body from a single arm."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The platypus has no stomach.", "The speed of light is exactly 299,792,458 meters per second.", "A blue whale's heart beats only twice per minute while diving."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The first oranges weren't orange.", "Hippopotamuses produce their own sunscreen.", "A snail can have over 25,000 teeth."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["Sloths can hold their breath for up to 40 minutes underwater.", "Cows have best friends.", "An ant can survive underwater for two weeks."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The moon has moonquakes.", "A giraffe's tongue is black to prevent sunburn.", "Elephants are the only mammals that can't jump."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The human brain generates enough electricity to power a small LED light.", "Dolphins give each other names.", "A chameleon's tongue is five times the length of its body."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["Tigers have striped skin, not just striped fur.", "The average person walks past 36 murderers in their lifetime.", "A penguin's black and white coloring is called countershading."],
+        "fake_index": 1,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The Romans used to clean and whiten their teeth with urine.", "The average person spends 2 weeks of their lifetime waiting for traffic lights to change.", "An octopus has seven hearts."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["Cats can't taste sweetness.", "The human body contains enough carbon to make 900 pencils.", "A snail can sleep for three years at a time."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The inventor of the Frisbee was turned into a Frisbee after death.", "The shortest commercial flight in the world takes 1.5 minutes.", "A crocodile can't stick its tongue out."],
+        "fake_index": 0,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["There are more fake flamingos in the world than real ones.", "Cows have best friends and get stressed when separated.", "The average person spends 6 months of their life waiting for red lights to turn green."],
+        "fake_index": 2,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["The world's oldest known living tree is over 5,000 years old.", "A day on Venus is longer than its year.", "Honey is the only food that never spoils."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["A mantis shrimp can punch with the force of a .22 caliber bullet.", "Honeybees do a dance to tell other bees where to find food.", "An elephant's trunk contains exactly 100,000 muscles."],
+        "fake_index": 2,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The average cumulus cloud weighs 1.1 million pounds.", "Goldfish can tell the difference between Bach and Stravinsky.", "A human could swim through a blue whale's largest blood vessels."],
+        "fake_index": 1,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The first text message ever sent was 'Merry Christmas'.", "A kangaroo can't jump if its tail is lifted off the ground.", "The average person spends 5 years of their life dreaming."],
+        "fake_index": 1,
+        "difficulty": "medium"
+      },
+      {
+        "facts": ["Glass takes over one million years to decompose.", "The longest recorded flight of a paper airplane is 27.6 seconds.", "Sharks existed before trees on Earth."],
+        "fake_index": 0,
+        "difficulty": "hard"
+      },
+      {
+        "facts": ["The largest living organism on Earth is a fungus.", "Sound travels 15 times faster in steel than in air.", "A cheetah's spine acts like a spring when running."],
+        "fake_index": 1,
+        "difficulty": "hard"
+      },
+        {
+            "facts": ["The average person spends two weeks of their life waiting for traffic lights.", "The human brain can process images seen for as little as 13 milliseconds.", "Ants never sleep."],
+            "fake_index": 2,
+            "difficulty": "medium"
+        },
+        {
+            "facts": ["The word 'nerd' was first coined by Dr. Seuss.", "A crocodile can't move its tongue.", "The average person walks the equivalent of five times around the Earth in their lifetime."],
+            "fake_index": 2,
+            "difficulty": "medium"
+        },
+        {
+            "facts": ["Astronauts grow up to 2 inches taller in space.", "The average person blinks around 25,000 times a day.", "A rhinoceros' horn is made of compressed hair."],
+            "fake_index": 1,
+            "difficulty": "hard"
+        },
+        {
+            "facts": ["The first alarm clock could only ring at 4 AM.", "A jiffy is an actual unit of time: 1/100th of a second.", "Dolphins sleep with one eye open."],
+            "fake_index": 0,
+            "difficulty": "hard"
+        },
+        {
+            "facts": ["Kangaroos can't walk backwards.", "The heart of a shrimp is located in its head.", "A lion's roar can be heard from 5 miles away."],
+            "fake_index": 2,
+            "difficulty": "medium"
+        },
+        {
+            "facts": ["A day on Venus is longer than its year.", "The average cloud weighs 1.1 million pounds.", "Penguins have silver teeth."],
+            "fake_index": 2,
+            "difficulty": "hard"
+        },
+        {
+            "facts": ["Bananas are slightly radioactive.", "An octopus has three hearts.", "The human body produces enough saliva to fill two swimming pools in a lifetime."],
+            "fake_index": 2,
+            "difficulty": "medium"
+        },
+        {
+        "facts": ["There are more trees on Earth than stars in the Milky Way.", "The first popsicle was invented by an 11-year-old.", "Humans are the only primates that don't have pigment in the palms of their hands."],
+        "fake_index": 2,
+        "difficulty": "hard"
+        },
+        {
+        "facts": ["The longest recorded game of Monopoly was 70 straight days.", "A single rainforest can produce 20% of the world's oxygen.", "Cows give more milk when they listen to slow music."],
+        "fake_index": 0,
+        "difficulty": "medium"
+        },
+        {
+        "facts": ["The average person walks the equivalent of five times around the Earth in their lifetime.", "A bolt of lightning contains enough energy to toast 100,000 slices of bread.", "A single strand of spider silk is stronger than steel of the same thickness."],
+        "fake_index": 1,
+        "difficulty": "medium"
+        },
+        {
+            "facts": ["A single bolt of lightning contains enough energy to toast 100,000 slices of bread.", "Astronauts grow up to 2 inches taller in space.", "Penguins only live in the Southern Hemisphere."],
+            "fake_index": 2,
+            "difficulty": "medium"
+            },
+            {
+            "facts": ["There are more trees on Earth than stars in the Milky Way.", "The first popsicle was invented by an 11-year-old.", "Humans are the only primates that don't have pigment in the palms of their hands."],
+            "fake_index": 2,
+            "difficulty": "hard"
+            },
+            {
+            "facts": ["The Great Wall of China is visible from space.", "An octopus has three hearts.", "A day on Venus is longer than its year."],
+            "fake_index": 0,
+            "difficulty": "medium"
+            },
+            {
+            "facts": ["Humans share 50% of their DNA with bananas.", "A hummingbird weighs less than a penny.", "Penguins have knees."],
+            "fake_index": 0,
+            "difficulty": "medium"
+            },
+            {
+            "facts": ["A shark can detect blood from a quarter mile away.", "The shortest war in history lasted 38 minutes.", "Mount Everest grows 4 inches every year."],
+            "fake_index": 2,
+            "difficulty": "medium"
+            },
+            {
+            "facts": ["There are more possible iterations of a game of chess than there are atoms in the universe.", "A day on Mars is almost exactly the same length as a day on Earth.", "Elephants are the only mammals that can't jump."],
+            "fake_index": 1,
+            "difficulty": "hard"
+            },
+            {
+            "facts": ["Ancient Egyptians used cats to deliver mail.", "The human body contains enough carbon to make 900 pencils.", "The average person produces enough saliva in their lifetime to fill two swimming pools."],
+            "fake_index": 0,
+            "difficulty": "medium"
+            },
+            {
+            "facts": ["A neutron star is so dense that a teaspoon of it would weigh as much as Mount Everest.", "Some trees communicate with each other through an underground fungal network.", "The human eye can distinguish between 10 million different colors."],
+            "fake_index": 2,
+            "difficulty": "hard"
+            },
+            {
+            "facts": ["The first oranges weren't orange.", "The shortest commercial flight in the world lasts 1.5 minutes.", "A sneeze can travel up to 100 miles per hour."],
+            "fake_index": 1,
+            "difficulty": "medium"
+            },
+            {
+            "facts": ["The world's deepest postbox is in Japan's Susami, 10 meters underwater.", "Hippopotamuses secrete natural sunscreen.", "The average cloud weighs 1.1 million pounds."],
+            "fake_index": 2,
+            "difficulty": "hard"
+            },
+            {
+            "facts": ["The fingerprints of koalas are so similar to human fingerprints that they have been confused at crime scenes.", "The shortest commercial flight in the world lasts 1.5 minutes.", "Ants never sleep."],
+            "fake_index": 2,
+            "difficulty": "hard"
+            },
+            {
+            "facts": ["The human brain can store the equivalent of 4.7 billion books.", "Starfish can regenerate their entire body from a single arm.", "Sound travels four times faster in water than in air."],
+            "fake_index": 0,
+            "difficulty": "hard"
+            },
+            {
+            "facts": ["A day on Mercury is longer than its year.", "Honeybees can recognize human faces.", "Antarctica is the only continent without reptiles."],
+            "fake_index": 1,
+            "difficulty": "hard"
+            },
+            {
+            "facts": ["The average person walks past 36 murderers in their lifetime.", "Some species of bamboo can grow up to 35 inches in a single day.", "A giraffe's tongue is black to prevent sunburn."],
+            "fake_index": 0,
+            "difficulty": "medium"
+            },
+            {
+            "facts": ["The first artificial satellite was launched by the Soviet Union in 1957.", "The human body contains enough iron to make a 3-inch nail.", "Dolphins give each other names."],
+            "fake_index": 1,
+            "difficulty": "medium"
+            },
+            {
+            "facts": ["The Great Barrier Reef is the largest living structure on Earth.", "Cows produce more milk when listening to music.", "Butterflies can see ultraviolet light."],
+            "fake_index": 1,
+            "difficulty": "medium"
+            },
+            {
+            "facts": ["The speed of light is exactly 299,792,458 meters per second.", "Human teeth are just as strong as shark teeth.", "The Earth's core is hotter than the surface of the Sun."],
+            "fake_index": 2,
+            "difficulty": "hard"
+            },
+            {
+            "facts": ["Some trees can live for over 5,000 years.", "The average person blinks 15-20 times per minute.", "A snake can survive without food for two years."],
+            "fake_index": 2,
+            "difficulty": "easy"
+            },
+            {
+            "facts": ["The longest word in the English language has 189,819 letters.", "Octopuses have blue blood.", "The human body generates enough heat in 30 minutes to boil a gallon of water."],
+            "fake_index": 2,
+            "difficulty": "hard"
+            },
+            {
+            "facts": ["The world's oldest piece of chewing gum is over 9,000 years old.", "A hummingbird's heart beats up to 1,260 times per minute.", "Giraffes sleep standing up."],
+            "fake_index": 2,
+            "difficulty": "medium"
+            },
+            {
+            "facts": ["The human body contains enough phosphorus to make 2,200 match heads.", "A platypus has enough venom to kill a small dog.", "Lightning strikes the Earth about 100 times every second."],
+            "fake_index": 0,
+            "difficulty": "hard"
+            },
+            {
+                "facts": ["The Statue of Liberty's face is modeled after the sculptor's mother.", "Mozart wrote 'Twinkle, Twinkle, Little Star' at age 25.", "Vikings used the crystals called sunstones to navigate cloudy seas."],
+                "fake_index": 1,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["A platypus's bill can detect electrical signals.", "The first oranges weren't orange in color.", "Ancient Egyptians used honey as currency."],
+                "fake_index": 2,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["Flamingos get their pink color from eating shrimp.", "The first digital camera was built by NASA.", "The Easter Island heads have full bodies underground."],
+                "fake_index": 1,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The first message sent by Morse code was 'What hath God wrought?'", "Coca-Cola was originally green.", "The microwave was invented after a candy bar melted in someone's pocket."],
+                "fake_index": 1,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The Great Wall of China's mortar contains sticky rice.", "Nintendo was founded as a playing card company.", "The first computer mouse was made of steel."],
+                "fake_index": 2,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["Honeybees can recognize human faces.", "The average cumulus cloud weighs 1.1 million pounds.", "Squirrels plant thousands of new trees each year by forgetting where they buried their acorns."],
+                "fake_index": 0,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The Ancient Romans used crushed mouse brains as toothpaste.", "The shortest war in history lasted 38 minutes.", "The first telephone book had only 50 names."],
+                "fake_index": 0,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["A mantis shrimp can punch with the force of a .22 caliber bullet.", "A giraffe's spots are as unique as human fingerprints.", "A kangaroo's jump can cover 30 feet in a single bound."],
+                "fake_index": 1,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["Bananas are berries but strawberries aren't.", "The average person's foot is the same length as their forearm.", "A blue whale's tongue weighs as much as an adult elephant."],
+                "fake_index": 1,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The fingerprints of koalas are so similar to humans they can be confused at crime scenes.", "The average person spends 6 months of their lifetime waiting for red lights to turn green.", "Cows produce more milk when listening to classical music."],
+                "fake_index": 2,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The word 'robot' comes from the Czech word for 'forced labor'.", "The first product with a barcode was Wrigley's gum.", "The Fortune Cookie was invented in San Francisco."],
+                "fake_index": 1,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["A day on Venus is longer than its year.", "The first email was sent in 1972.", "Polar bears are left-handed."],
+                "fake_index": 2,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["Cats have three eyelids.", "The human stomach can dissolve razor blades.", "An octopus has half its neurons in its tentacles."],
+                "fake_index": 1,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The inventor of the Pringles can was buried in a Pringles can.", "The average golf ball has 336 dimples.", "The first video on YouTube was about elephants."],
+                "fake_index": 2,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["Butterflies taste with their feet.", "A cockroach can live for several weeks without its head.", "A snail has over 14,000 teeth."],
+                "fake_index": 2,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The first person convicted of speeding was going 8 mph.", "Astronauts can't cry in space due to lack of gravity.", "The average person walks past 16 murderers in their lifetime."],
+                "fake_index": 1,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The longest wedding veil was longer than 63 football fields.", "Elephants are the only mammals that can't jump.", "Bees have five eyes."],
+                "fake_index": 0,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The first alarm clock could only ring at 4 AM.", "Dolphins give each other names.", "The average person has over 1,460 dreams per year."],
+                "fake_index": 0,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The heart of a shrimp is located in its head.", "Wombats produce cube-shaped droppings.", "A camel's hump can store 100 pounds of fat."],
+                "fake_index": 2,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The longest recorded chicken flight was 13 seconds.", "The world's deepest postbox is 10 meters underwater.", "Hippopotamuses sweat red liquid."],
+                "fake_index": 2,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The average person walks the equivalent of three times around the world in a lifetime.", "A rhinoceros's horn is made of compressed hair.", "Tigers have striped skin as well as striped fur."],
+                "fake_index": 0,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The first photograph of a person was taken by accident.", "The shortest commercial flight in the world takes 1.5 minutes.", "The average person spends two years of their life on the phone."],
+                "fake_index": 2,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["A single bolt of lightning contains enough energy to toast 100,000 slices of bread.", "The human body contains enough iron to make a 3-inch nail.", "Sharks must swim constantly to avoid sinking."],
+                "fake_index": 1,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The first item sold on eBay was a broken laser pointer.", "The average strawberry has 200 seeds.", "The first text message said 'Merry Christmas'."],
+                "fake_index": 1,
+                "difficulty": "medium"
+              },
+              {
+                "facts": ["The first traffic light was installed in London in 1868", "A group of flamingos is called a 'flamboyance'", "The average wooden pencil can write for 28 miles"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The Library of Congress adds about 12,000 items to its collection each day", "Hummingbirds are the only birds that can fly backwards", "A snail can have over 35,000 teeth"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first vending machine was invented in Egypt and dispensed holy water", "The average person spends 4 months of their lifetime waiting in lines", "All pandas in the world are owned by China"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The shortest commercial airline route takes 2.5 minutes to complete", "A day on Mercury lasts twice as long as its year", "Camels have three sets of eyelids"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first pizzeria in the United States opened in 1905", "A seahorse's top swimming speed is 0.01 mph", "Ancient Romans used vinegar to detect fake silver coins"],
+                "fake_index": 1,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average person spends 6 weeks of their life waiting at traffic lights", "Cows have regional accents in their moos", "A butterfly's wings contain over 1 million scales"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first chocolate chip cookie was invented by accident", "The average human body contains enough carbon to make 900 pencils", "Pineapples take exactly two years to grow"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first newspaper was published in ancient Rome", "A kangaroo's hop can cover up to 25 feet in a single bound", "The average person blinks 15,000 times per day"],
+                "fake_index": 0,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The world's oldest piece of chewing gum is over 9,000 years old", "A crocodile cannot stick out its tongue", "The average raindrop falls at 17 miles per hour"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first successful parachute jump was made from the Eiffel Tower", "The average person spends 2 years of their lifetime watching commercials", "A jellyfish is 98% water"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first potatoes were cultivated in Peru about 7,000 years ago", "Sloths can hold their breath for up to 40 minutes underwater", "The average person walks past 20 murderers in their lifetime"],
+                "fake_index": 0,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The longest recorded flight of a paper airplane is 27.6 seconds", "An ostrich's brain is smaller than its eyeball", "Lobsters taste with their feet"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first webcam was invented to monitor a coffee pot", "The average person spends 3 years of their life in meetings", "A starfish can regenerate a new body from a single arm"],
+                "fake_index": 1,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first bicycle was made entirely of wood", "Ravens can learn to speak better than parrots", "The average adult spends 4 months of their life sitting at traffic lights"],
+                "fake_index": 1,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first photograph took 8 hours to expose", "A cheetah can change direction mid-air while sprinting", "The average person spends 5 years of their life eating"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first sandwich was created by a gambler who didn't want to leave the card table", "An electric eel can produce enough electricity to light up a Christmas tree", "A giraffe's neck contains exactly 10 vertebrae"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first matchstick was invented in 1826", "A hippo can open its mouth wide enough to fit a 4-foot tall child", "Butterflies live on average for 3 months"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first rubber band was made from vulcanized rubber in 1845", "Owls are the only birds that can see the color blue", "A cat's purr vibrates at a frequency that promotes bone density"],
+                "fake_index": 1,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average person walks the equivalent of 4 times around the Earth in their lifetime", "Elephants are the only mammals that can't jump", "A chameleon's tongue is twice the length of its body"],
+                "fake_index": 0,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first coffee was discovered by goats eating coffee berries", "Sharks can detect blood from up to a quarter of a mile away", "The average pencil can draw a line 35 miles long"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average person will spend 2 weeks of their life kissing", "A crocodile can't move its tongue", "Starfish have a memory span of 3 months"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first crossword puzzle was published in 1913", "The average shower uses 17 gallons of water", "An octopus changes color when it dreams"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first pair of sunglasses was invented in 12th century China", "A snail can sleep for up to three years at a time", "Tigers can purr like house cats"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The fortune cookie was invented in San Francisco", "The average person spends 5 months of their lifetime waiting in lines", "A penguin's black and white coloring is called reverse shading"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first computer mouse was made of wood", "Honeybees can recognize human faces", "Sharks must swim forward to breathe"],
+                "fake_index": 1,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average person spends 3 years of their life on the toilet", "A rattlesnake can still bite after it's dead", "Dolphins sleep with both eyes closed"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first Olympic marathon was 24.85 miles", "A camel's milk never curdles", "Koalas have fingerprints nearly identical to humans"],
+                "fake_index": 1,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average desk worker types 7,400 words per day", "Bees must visit 2 million flowers to make one pound of honey", "Giraffes can clean their ears with their 21-inch tongue"],
+                "fake_index": 0,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first ice pop was invented by an 11-year-old boy", "A rhinoceros horn is made of compressed hair", "The average person walks past 25 murderers in their lifetime"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first ballpoint pen was sold for $12.50 in 1945", "Cows produce more milk when listening to slow music", "A hummingbird flaps its wings exactly 200 times per second"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first paper money was made in China during the Tang Dynasty", "A group of owls is called a parliament", "Kangaroos can jump backwards"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average person spends 2 years of their life searching for lost items", "A blue whale's heart only beats 8 times per minute", "Ants carry 10 times their body weight"],
+                "fake_index": 1,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first stop sign was white with black letters", "A pig's squeal can reach 115 decibels", "Butterflies remember experiences from their caterpillar days"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first jigsaw puzzle was created as a geography teaching tool", "Sloths take two weeks to digest their food", "A snail has exactly 14,000 teeth"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average human body contains enough fat to make seven bars of soap", "A cheetah's tail acts as a rudder when running", "An elephant's trunk contains exactly 50,000 muscles"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first product to have a barcode was Wrigley's gum", "A group of flamingos is called a 'flamboyance'", "The average person spends 6 months of their life waiting for red lights to turn green"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first email was sent in 1971", "A group of flamingos is called a 'flamboyance'", "The average person spends 6 months of their life waiting for red lights to turn green"],
+                "fake_index": 0,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first alarm clock could only ring at 4 AM", "A jiffy is an actual unit of time: 1/100th of a second", "Dolphins sleep with one eye open"],
+                "fake_index": 0,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The fingerprints of koalas are so similar to humans they can be confused at crime scenes", "A bee's brain is oval shaped", "The average person spends 6 months of their lifetime waiting for red lights to turn green"],
+                "fake_index": 1,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["Kangaroos can't walk backwards", "The heart of a shrimp is located in its head", "A lion's roar can be heard from 5 miles away"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first recorded use of toilet paper was in 6th century China", "A human body contains enough potassium to make a small bomb", "All clownfish are born female"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first fireworks were made in China from bamboo stalks", "An albatross can sleep while flying", "Tigers have exactly 100 stripes"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first chocolate bar was made in England in 1847", "A raccoon can run at speeds of up to 15 mph", "The average person spends 7 years of their life sleeping"],
+                "fake_index": 0,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first postage stamp featured Queen Victoria in black ink", "Pineapples take exactly 18 months to grow", "Horses can't breathe through their mouths"],
+                "fake_index": 1,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average desk contains 400 times more bacteria than a toilet seat", "Gorillas can catch human colds", "A bee visits 5000 flowers in one day"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The world's first novel was written by a Japanese woman", "An octopus has copper-based blood", "Rabbits can see directly behind themselves"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["A strawberry is the only fruit with seeds on the outside", "The average person spends 4 months of their life talking on the phone", "All polar bears are left-handed"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first tea bags were made of silk", "A cat's jaw can't move sideways", "An ant colony has a specific burial ground"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The world's oldest known recipe is for beer", "Dolphins can recognize themselves in mirrors", "A camel's hump contains exactly 500 calories"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first credit card was made of cardboard", "Ancient Egyptians used honey as an antibiotic", "All spiders have exactly eight eyes"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first vacuum cleaner was horse-drawn", "A kangaroo can't walk backwards", "The average person dreams in black and white 20% of the time"],
+                "fake_index": 0,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first recorded game of baseball was played in 1846", "A giraffe can clean its own ears with its tongue", "All bees must sleep exactly 8 hours a day"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first mobile phone call was made in 1973", "An elephant's trunk has over 40,000 muscles", "A shark must swim constantly to stay alive"],
+                "fake_index": 1,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average human walks 65,000 miles in their lifetime", "A squirrel can fall from any height without injury", "Owls turn their heads 360 degrees"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first sushi was created as a way to preserve fish", "Camels store water in their humps", "A snail takes exactly 7 minutes to fall asleep"],
+                "fake_index": 1,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first washing machine was invented in 1851", "A crocodile can't close its eyes underwater", "Penguins mate for exactly 10 years"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first air conditioning unit was invented to preserve paper", "Butterflies can see ultraviolet light", "All desert snakes are nocturnal"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average person produces enough saliva to fill two swimming pools", "A hummingbird's heart beats 1,260 times per minute", "Goldfish lose their color if kept in darkness"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first documented use of sign language was in Ancient Greece", "The moon has a distinct smell", "A horse's brain weighs exactly 5 pounds"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first public library opened in ancient Rome", "A sloth's metabolism is so slow it can starve with a full stomach", "Cats blink exactly 50 times per hour"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first recorded use of 'OMG' was in a 1917 letter to Winston Churchill", "The shortest war in history lasted 38 minutes", "All desert scorpions glow bright blue under UV light"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["Tomatoes are not fruits", "Octopuses have taste buds on their tentacles", "A chameleon can see in two different directions at once"],
+                "fake_index": 0,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average human body contains enough iron to make a 3-inch nail", "A woodpecker's tongue wraps around its brain", "Elephants are the only mammals that can't sweat"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first motorcycle was powered by a coal-fired steam engine", "A platypus has enough venom to kill a small dog", "All species of wasps can recognize human faces"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average person spends 5 years of their lifetime eating", "A jellyfish has survived in space", "Bats always turn left when exiting a cave"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first credit card had a $300 limit", "Ravens can remember human faces for up to two years", "A ladybug's spots indicate its exact age"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first advertisement on the internet was for a law firm", "Koalas sleep up to 22 hours a day", "All species of crabs can swim"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first video game tournament was held in 1972", "A goat's pupils are rectangular", "Penguins lose exactly 300 feathers per year"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average person walks by 7 murderers in their lifetime", "Honey never spoils", "A giraffe's spots turn darker with age"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first recorded sneeze on television was in 1941", "A shark's teeth are covered in fluoride", "Ants stretch when they wake up"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average chair supports 7,000 sitting sessions in its lifetime", "Eagles can spot a rabbit from 2 miles away", "All lizards can regrow their tails"],
+                "fake_index": 0,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first safety pin was sold for $400", "Squirrels plant thousands of trees every year by forgetting where they put their acorns", "A cheetah's tail has exactly 30 spots"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first pair of rubber gloves was invented for a nurse with sensitive hands", "A hummingbird weighs less than a penny", "Dolphins name their children at birth"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average person spends 6 months of their life waiting in line", "An ostrich's eye is bigger than its brain", "All species of parrots are right-footed"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first recorded use of LOL was in the 1980s", "Cows have regional accents", "A butterfly tastes with its wings"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first selfie was taken in 1839", "A crocodile can't stick its tongue out", "All species of jellyfish have exactly 4 tentacles"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The average person makes 1,500 phone calls per year", "A snail can sleep for three years", "All owls have brown eyes"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first roller coaster was used to transport coal", "An electric eel can produce enough electricity to light a bulb", "A kangaroo hops exactly 8 feet per jump"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The first recorded case of identical twins was in 1100", "Butterflies can taste with their feet", "All species of birds sleep standing up"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["Water freezes at 32 degrees Fahrenheit", "A cat has 9 lives", "Dogs can't look up"],
+                "fake_index": 1,
+                "difficulty": "easy"
+            },
+            {
+                "facts": ["The average person has over 1,460 dreams per year", "Sloths move so slowly that algae grows on their fur", "A cat's whiskers are exactly as wide as its body"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["The Great Wall of China is visible from space", "Bananas are curved because they grow upwards", "Bulls hate the color red"],
+                "fake_index": 0,
+                "difficulty": "easy"
+            },
+            {
+                "facts": ["The first pizza delivery was in 1889", "A raccoon can run at speeds of up to 15 mph", "The human body has 206 bones"],
+                "fake_index": 1,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["All polar bears are left-handed", "Fish can't blink", "Carrots help you see in the dark"],
+                "fake_index": 0,
+                "difficulty": "easy"
+            },
+            {
+                "facts": ["The first commercial chewing gum was made from tree sap", "A day on Venus is longer than its year", "Pandas sleep exactly 12 hours a day"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["An apple a day keeps the doctor away", "Coffee is made from beans", "Bats are blind"],
+                "fake_index": 2,
+                "difficulty": "easy"
+            },
+            {
+                "facts": ["The shortest war in history lasted 38 minutes", "A group of crows is called a murder", "The average person blinks 100 times per minute"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["Goldfish only have a three-second memory", "Lightning never strikes the same place twice", "Dogs can't sweat"],
+                "fake_index": 0,
+                "difficulty": "easy"
+            },
+            {
+                "facts": ["The average smartphone user unlocks their phone 150 times per day", "Butterflies taste with their feet", "A snail sleeps for exactly 3 years at a time"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["Humans can't breathe and swallow at the same time", "Penguins have knees", "Mount Everest is the tallest mountain in the world"],
+                "fake_index": 2,
+                "difficulty": "easy"
+            },
+            {
+                "facts": ["The first paper clip was patented in 1899", "An octopus has three hearts", "All species of sharks must swim constantly to breathe"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["Sugar causes hyperactivity in children", "Camels store water in their humps", "The moon is made of cheese"],
+                "fake_index": 0,
+                "difficulty": "easy"
+            },
+            {
+                "facts": ["Cracking your knuckles causes arthritis", "Spiders crawl into your mouth while you sleep", "Your fingernails keep growing after you die"],
+                "fake_index": 1,
+                "difficulty": "easy"
+            },
+            {
+                "facts": ["The first photograph took 8 hours to expose", "A kangaroo can't jump backwards", "All desert snakes are nocturnal"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["You lose most of your body heat through your head", "Swimming after eating causes cramps", "Touching a toad gives you warts"],
+                "fake_index": 0,
+                "difficulty": "easy"
+            },
+            {
+                "facts": ["The world's deepest postbox is in Japan's Susami, 10 meters underwater", "A cockroach can live for several weeks without its head", "All species of bees die after stinging"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            },
+            {
+                "facts": ["Daddy longlegs are the most venomous spiders", "Chewing gum takes 7 years to digest", "Lightning never strikes the same place twice"],
+                "fake_index": 0,
+                "difficulty": "easy"
+            },
+            {
+                "facts": ["The first television remote was called 'Lazy Bones'", "Wombats produce cube-shaped droppings", "A giraffe's neck contains exactly 10 vertebrae"],
+                "fake_index": 2,
+                "difficulty": "medium"
+            }
+]
