@@ -61,7 +61,11 @@
             "down": "cellar",
             "east": "garden"
           },
-          "items": ["torch", "silver key", "torn page"],
+          "items": [
+            { "name": "torch" },
+            { "name": "silver key" },
+            { "name": "torn page" }
+          ],
           "containers": {
             "old chest": {
               "description": "A heavy wooden chest with ornate carvings.",
@@ -77,7 +81,7 @@
           "exits": {
             "south": "hall"
           },
-          "items": ["cookbook"],
+          "items": [{ "name": "cookbook" }],
           "containers": {
             "loose brick": {
               "description": "A brick that seems slightly out of place.",
@@ -97,7 +101,7 @@
           "exits": {
             "up": "hall"
           },
-          "items": ["old coin", "wine bottle"],
+          "items": [{ "name": "old coin" }, { "name": "wine bottle" }],
           "containers": {
             "wall safe": {
               "description": "A sturdy iron safe built into the wall.",

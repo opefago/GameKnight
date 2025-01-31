@@ -9,14 +9,14 @@ class GuessThePhraseGame(Game):
         self.__used_phrases = set()
         self.__difficulty_thresholds = {
             "easy": 0.5,
-            "medium": 0.7,
-            "hard": 0.85
+            "medium": 0.85,
+            "hard": 0.95
         }
         self.__cost_per_guess = 50
         self.__cost_per_failed_attempt = 150
         self.__MAX_ATTEMPTS = 3
         self.__currency = "₦"
-        self.__separator = "   "
+        self.__separator = "         "
     
     def name(self):
         return "Guess The Phrase"

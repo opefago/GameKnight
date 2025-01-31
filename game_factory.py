@@ -1,6 +1,8 @@
 import os
+from find_the_fake_fact.find_the_fake_fact import FindTheFakeFact
+from guess_the_country.guess_the_country import GuessTheCountry
 from guess_the_phrase.guess_the_phrase import GuessThePhraseGame
-from text_adventure.text_adventure_game import TextAdventureGame
+from text_adventure.text_adventure_game import EnhancedTextAdventureGame, TextAdventureGame
 from word_scramble.word_scramble_game import WordScrambleGame
 
 #store the various games, an index and the game name and the game class, display the game name and the index
@@ -12,6 +14,9 @@ class GameFactory:
         self.games.append(("Word Scramble", WordScrambleGame))
         self.games.append(("Guess the Phrase", GuessThePhraseGame, f"guess_the_phrase{os.sep}phrase_inventory.csv"))
         self.games.append(("Text Adventure", TextAdventureGame, f"text_adventure{os.sep}game_layouts.json")) 
+        self.games.append(("Text Adventure (Enhanced)", EnhancedTextAdventureGame, f"text_adventure{os.sep}enhanced_game_layouts.json")) 
+        self.games.append(("Guess The Counry", GuessTheCountry))
+        self.games.append(("Find The Fake Fact", FindTheFakeFact, f"find_the_fake_fact{os.sep}facts.json"))
     def select_game(self):
         for i, game in enumerate(self.games):
             print(f"{i+1}. {game[0]}")
